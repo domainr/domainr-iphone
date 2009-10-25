@@ -239,7 +239,7 @@
 		aSize = [domainNameString sizeWithFont:[UIFont systemFontOfSize:17] 
 							 constrainedToSize:CGSizeMake(UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 260.0 : 420, 1000)  
 						lineBreakMode:UILineBreakModeTailTruncation];  
-		return aSize.height+35;	
+		return aSize.height+21;	
 	}
 
 	- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
