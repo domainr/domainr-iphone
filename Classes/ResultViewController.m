@@ -17,7 +17,7 @@
 	- (id)initWithResult:(Result *)newResult; {
 		self = [super initWithStyle:UITableViewStyleGrouped];
 		self.result = newResult;
-		self.title = [newResult domainName];
+		self.title = result.imageType == kTLD ? [NSString stringWithFormat:@".%@", newResult.domainName] : newResult.domainName;
 		return self;
 	}
 
@@ -142,8 +142,16 @@
 					[view removeFromSuperview];
 				
 				CGRect rect = [[UIScreen mainScreen] bounds];
-				UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 45.0, rect.size.width - 20.0, 30.0)];
+				UILabel *domainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, rect.size.width - 40.0, 40.0)];
+				domainLabel.text = [NSString stringWithFormat:@"%@%@", result.imageType == kTLD ? [NSString stringWithFormat:@".%@",result.domainName] : result.domainName, result.path ? result.path : @""];
+				domainLabel.font = [UIFont boldSystemFontOfSize:24];
+				domainLabel.textColor = [UIColor blackColor];
+				domainLabel.backgroundColor = [UIColor clearColor];
+				domainLabel.adjustsFontSizeToFitWidth = YES;
+				[cell.contentView addSubview:domainLabel];
+				Release(domainLabel);
 				
+				UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 45.0, rect.size.width - 40.0, 30.0)];
 				if(result.imageType == kAvailable) {
 					statusLabel.text = @"This domain is available.";
 					statusLabel.textColor = [UIColor greenColor];
@@ -169,12 +177,12 @@
 					statusLabel.text = [NSString stringWithFormat:@"Subdomain of .%@",[subStrings objectAtIndex:1]];
 					statusLabel.textColor = [UIColor darkGrayColor];
 				}
-//				statusLabel.textAlignment = UITextAlignmentCenter;
 				statusLabel.backgroundColor = [UIColor clearColor];
-				statusLabel.font = [UIFont systemFontOfSize:19];
+				statusLabel.font = [UIFont systemFontOfSize:18];
 				statusLabel.adjustsFontSizeToFitWidth = YES;
-				
 				[cell.contentView addSubview:statusLabel];
+				
+				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 				Release(statusLabel);
 			}
 			else if (indexPath.row == 1) {
@@ -239,29 +247,33 @@
 
 	- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath; {
 		if(indexPath.section == kRegisterSection) {
-
-			if([result isResolvable]) {
+			if(indexPath.row == 1) {
 				isGoingBack = NO;
-				NSArray *subStrings = [result.domainName componentsSeparatedByString:@"."];
-				Result *newResult = [[Result alloc] init];
-				newResult.availability = @"tld";
-				newResult.domainName = [NSString stringWithFormat:@"See details for .%@",[subStrings objectAtIndex:1]];
-				newResult.registrars = result.registrars;
-				ResultViewController *resultViewController = [[ResultViewController alloc] initWithResult:newResult];
-				resultViewController.isDeeper = YES;
-				[self.navigationController pushViewController:resultViewController animated:YES];
-			}
-			else if([result isRegistrable]) {
-				isGoingBack = NO;
-				NSString *apiRegisterURL = [NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName];
-				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL] autorelease];
-				[self.navigationController pushViewController:webViewController animated:YES];
-			}
-			else {
-				isGoingBack = NO;
-				NSString *tldURL = [NSString stringWithFormat:@"http://domai.nr/about/tlds",result.domainName];
-				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:tldURL] autorelease];
-				[self.navigationController pushViewController:webViewController animated:YES];
+				if(result.imageType == kTaken) {
+					NSString *buyURL = [NSString stringWithFormat:@"http://domai.nr/%@/buy",result.domainName];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:buyURL] autorelease];
+					[self.navigationController pushViewController:webViewController animated:YES];
+				}
+				else if([result isResolvable]) {
+					NSArray *subStrings = [result.domainName componentsSeparatedByString:@"."];
+					Result *newResult = [[Result alloc] init];
+					newResult.availability = @"tld";
+					newResult.domainName = [NSString stringWithFormat:@"%@",[subStrings objectAtIndex:1]];
+					newResult.registrars = result.registrars;
+					ResultViewController *resultViewController = [[ResultViewController alloc] initWithResult:newResult];
+					resultViewController.isDeeper = YES;
+					[self.navigationController pushViewController:resultViewController animated:YES];
+				}
+				else if([result isRegistrable]) {
+					NSString *apiRegisterURL = [NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL] autorelease];
+					[self.navigationController pushViewController:webViewController animated:YES];
+				}
+				else {
+					NSString *tldURL = [NSString stringWithFormat:@"http://domai.nr/about/tlds",result.domainName];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:tldURL] autorelease];
+					[self.navigationController pushViewController:webViewController animated:YES];
+				}				
 			}
 		}
 		else if(indexPath.section == kMailSection) {
