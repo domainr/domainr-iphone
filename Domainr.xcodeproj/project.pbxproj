@@ -21,7 +21,6 @@
 		BA6F33AE10799736002A3A22 /* NSUserDefaults+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F33AC10799736002A3A22 /* NSUserDefaults+Extensions.m */; };
 		BA8A7D850FE4E44D00D5907E /* tld.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8A7D840FE4E44D00D5907E /* tld.png */; };
 		BA8F250010905E1D000CBAF0 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA8F24FF10905E1D000CBAF0 /* MessageUI.framework */; };
-		BA8F252B1090EAFC000CBAF0 /* welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8F252A1090EAFC000CBAF0 /* welcome.png */; };
 		BA8F25B8109264A7000CBAF0 /* RevealDisclosureIndicatorDown.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8F25B6109264A7000CBAF0 /* RevealDisclosureIndicatorDown.png */; };
 		BA8F25D6109266DC000CBAF0 /* SDImage.m in Sources */ = {isa = PBXBuildFile; fileRef = BA8F25D4109266DC000CBAF0 /* SDImage.m */; };
 		BA8F25EB109269B3000CBAF0 /* RevealDisclosureIndicatorDownSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = BA8F25EA109269B3000CBAF0 /* RevealDisclosureIndicatorDownSelected.png */; };
@@ -47,7 +46,6 @@
 		BA9D0EF10FCA67B600E2B262 /* maybe.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D0EF00FCA67B600E2B262 /* maybe.png */; };
 		BA9D0EF30FCA67BA00E2B262 /* available.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D0EF20FCA67BA00E2B262 /* available.png */; };
 		BA9D0EFB0FCA682700E2B262 /* ResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D0EF70FCA682700E2B262 /* ResultCell.m */; };
-		BA9D0F190FCA69F000E2B262 /* taken.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D0F180FCA69F000E2B262 /* taken.png */; };
 		BA9D10F20FCA8DA200E2B262 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA9D10F10FCA8DA200E2B262 /* Entitlements.plist */; };
 		BA9D11160FCA8F4300E2B262 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BA9D11150FCA8F4300E2B262 /* icon.png */; };
 		BAA036561090380600221219 /* DomainrTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAA036551090380600221219 /* DomainrTableView.m */; };
@@ -81,7 +79,6 @@
 		BA6F33AD10799736002A3A22 /* NSUserDefaults+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Extensions.h"; sourceTree = "<group>"; };
 		BA8A7D840FE4E44D00D5907E /* tld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tld.png; sourceTree = "<group>"; };
 		BA8F24FF10905E1D000CBAF0 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		BA8F252A1090EAFC000CBAF0 /* welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome.png; sourceTree = "<group>"; };
 		BA8F25B6109264A7000CBAF0 /* RevealDisclosureIndicatorDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RevealDisclosureIndicatorDown.png; sourceTree = "<group>"; };
 		BA8F25D4109266DC000CBAF0 /* SDImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImage.m; sourceTree = "<group>"; };
 		BA8F25D5109266DC000CBAF0 /* SDImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImage.h; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		BA9D0EF20FCA67BA00E2B262 /* available.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = available.png; sourceTree = "<group>"; };
 		BA9D0EF60FCA682700E2B262 /* ResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultCell.h; path = Classes/ResultCell.h; sourceTree = "<group>"; };
 		BA9D0EF70FCA682700E2B262 /* ResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultCell.m; path = Classes/ResultCell.m; sourceTree = "<group>"; };
-		BA9D0F180FCA69F000E2B262 /* taken.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = taken.png; sourceTree = "<group>"; };
 		BA9D10F10FCA8DA200E2B262 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BA9D11150FCA8F4300E2B262 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		BAA036541090380600221219 /* DomainrTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DomainrTableView.h; path = ../DomainrTableView.h; sourceTree = "<group>"; };
@@ -289,11 +285,9 @@
 				BA8F25ED10926A72000CBAF0 /* RevealDisclosureIndicatorUpSelected.png */,
 				BA8F27B11092C24A000CBAF0 /* Back.png */,
 				BA8F27B21092C24A000CBAF0 /* Forward.png */,
-				BA8F252A1090EAFC000CBAF0 /* welcome.png */,
 				BA569DBA108DAD53004D5EB6 /* TopShadow.png */,
 				BA9D11150FCA8F4300E2B262 /* icon.png */,
 				BA8A7D840FE4E44D00D5907E /* tld.png */,
-				BA9D0F180FCA69F000E2B262 /* taken.png */,
 				BA9D0EF00FCA67B600E2B262 /* maybe.png */,
 				BA9D0EF20FCA67BA00E2B262 /* available.png */,
 				BA8F29441093C9FF000CBAF0 /* Default.png */,
@@ -359,13 +353,11 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				BA9D0EF10FCA67B600E2B262 /* maybe.png in Resources */,
 				BA9D0EF30FCA67BA00E2B262 /* available.png in Resources */,
-				BA9D0F190FCA69F000E2B262 /* taken.png in Resources */,
 				BA9D10F20FCA8DA200E2B262 /* Entitlements.plist in Resources */,
 				BA9D11160FCA8F4300E2B262 /* icon.png in Resources */,
 				BA8A7D850FE4E44D00D5907E /* tld.png in Resources */,
 				BAAD9407108C1DC700A27DC6 /* MainViewController.xib in Resources */,
 				BA569DBB108DAD53004D5EB6 /* TopShadow.png in Resources */,
-				BA8F252B1090EAFC000CBAF0 /* welcome.png in Resources */,
 				BA8F25B8109264A7000CBAF0 /* RevealDisclosureIndicatorDown.png in Resources */,
 				BA8F25EB109269B3000CBAF0 /* RevealDisclosureIndicatorDownSelected.png in Resources */,
 				BA8F25EE10926A72000CBAF0 /* RevealDisclosureIndicatorUp.png in Resources */,
