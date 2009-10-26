@@ -83,7 +83,7 @@
 	- (void)toggleActivityIndicator:(BOOL)show; {
 		[self _hideClearButton];
 		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration: 0.3];
+		[UIView setAnimationDuration: 0.1];
 		[UIView setAnimationDelegate:self];
 		if(show)
 			[activityIndicator startAnimating];
@@ -216,7 +216,7 @@
 		[myTableView reloadData];
 		loading = NO;
 		[self toggleActivityIndicator:NO];
-		[self performSelector:@selector(_showClearButton) withObject:nil afterDelay:0.1];
+		[self performSelector:@selector(_showClearButton) withObject:nil afterDelay:0];
 	}
 
 	- (void)_showClearButton; {
