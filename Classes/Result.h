@@ -22,6 +22,6 @@
 
 @property (assign) ResultCell *resultCell;
 
--(BOOL)isResolvable;
-
+- (BOOL)isResolvable;
+- (BOOL)isRegistrable;
 @end

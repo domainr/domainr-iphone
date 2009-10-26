@@ -20,7 +20,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 #define kMaybe		 1
 #define kTaken	 	 2
 #define kTLD		 3
-#define kUnavailable 4
+#define kSubdomain	 4
+#define kUnavailable 5
 
 #define KEYBOARD_HEIGHT_PORTRAIT 216
 #define KEYBOARD_HEIGHT_LANDSCAPE 162

@@ -18,7 +18,7 @@
 		return registrars;
 	}
 
-	-(void)setAvailability:(NSString *)avail; {
+	- (void)setAvailability:(NSString *)avail; {
 		if(avail == availability)
 			return;
 		
@@ -41,7 +41,7 @@
 			availability = [@"top-level domain" retain];
 		}
 		else if([avail isEqualToString:NSLocalizedString(@"known",nil)]) {
-			imageType = kTLD;
+			imageType = kSubdomain;
 			availability = [@"subdomain" retain];
 		}
 		else if([avail isEqualToString:NSLocalizedString(@"unavailable",nil)]) {
@@ -54,8 +54,15 @@
 		}
 	}
 
-	-(BOOL)isResolvable; {
+	- (BOOL)isResolvable; {
 		if(imageType == kAvailable || imageType == kUnavailable || imageType == kTLD || imageType == kMaybe) {
+			return NO;
+		}
+		return YES;
+	}
+
+	- (BOOL)isRegistrable; {
+		if(imageType == kTLD || imageType == kSubdomain) {
 			return NO;
 		}
 		return YES;
