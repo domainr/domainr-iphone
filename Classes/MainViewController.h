@@ -6,6 +6,7 @@
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UINavigationBarDelegate> {	
 	IBOutlet DomainrTableView			*myTableView;
+	IBOutlet UITableView				*historyTableView;
 	IBOutlet UISearchBar				*mySearchBar;
 	IBOutlet UIActivityIndicatorView	*activityIndicator;
 	IBOutlet UIView						*whiteBgView;
@@ -33,6 +34,7 @@
 }
 
 @property (nonatomic, retain) DomainrTableView	*myTableView;
+@property (nonatomic, retain) UITableView		*historyTableView;
 @property (nonatomic, retain) UISearchBar		*mySearchBar;
 
 - (void) toggleActivityIndicator:(BOOL)show;

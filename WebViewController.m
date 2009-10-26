@@ -79,7 +79,7 @@
 
 		titleField.text = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 		if (EmptyString(titleField.text))
-			titleField.text = NSLocalizedString(@"Untitled", nil);
+			titleField.text = SDLocalizedString(@"Untitled");
 		
 		if (titleField.alpha == 0) {
 			[UIView beginAnimations: @"" context: nil];
@@ -114,7 +114,7 @@
 	}
 
 	- (void) action: (id) sender; {
-		UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle: nil delegate: self cancelButtonTitle: NSLocalizedString(@"Cancel", nil) destructiveButtonTitle: nil otherButtonTitles: NSLocalizedString(@"Open in Safari", nil), nil] autorelease];
+		UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle: nil delegate: self cancelButtonTitle: SDLocalizedString(@"Cancel") destructiveButtonTitle: nil otherButtonTitles: SDLocalizedString(@"Open in Safari"), nil] autorelease];
 		[sheet showInView: [webView window]];
 	}
 

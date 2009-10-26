@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 
-
 @interface NSString (Data)
 
 + (id) stringWithData: (NSData*) data;
@@ -16,7 +15,6 @@
 
 - (NSString*) escapedString;
 - (NSString*) unescapedString;
-- (NSString*) stringByRemovingHTMLEntities;
 
 - (NSRange) rangeBetween: (NSString*) a and: (NSString*) b;
 - (NSString*) substringBetween: (NSString*) a and: (NSString*) b;

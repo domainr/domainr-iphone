@@ -24,27 +24,27 @@
 		
 		Release(availability);
 		
-		if([avail isEqualToString:NSLocalizedString(@"available",nil)]){
+		if([avail isEqualToString:SDLocalizedString(@"available")]){
 			availability = [avail retain];
 			imageType = kAvailable;
 		}
-		else if([avail isEqualToString:NSLocalizedString(@"maybe",nil)]) {
+		else if([avail isEqualToString:SDLocalizedString(@"maybe")]) {
 			availability = [avail retain];
 			imageType = kMaybe;
 		}
-		else if([avail isEqualToString:NSLocalizedString(@"taken",nil)]) {
+		else if([avail isEqualToString:SDLocalizedString(@"taken")]) {
 			availability = [avail retain];
 			imageType = kTaken;
 		}
-		else if([avail isEqualToString:NSLocalizedString(@"tld",nil)]) {
+		else if([avail isEqualToString:SDLocalizedString(@"tld")]) {
 			imageType = kTLD;
 			availability = [@"top-level domain" retain];
 		}
-		else if([avail isEqualToString:NSLocalizedString(@"known",nil)]) {
+		else if([avail isEqualToString:SDLocalizedString(@"known")]) {
 			imageType = kSubdomain;
 			availability = [@"subdomain" retain];
 		}
-		else if([avail isEqualToString:NSLocalizedString(@"unavailable",nil)]) {
+		else if([avail isEqualToString:SDLocalizedString(@"unavailable")]) {
 			availability = [avail retain];
 			imageType = kUnavailable;
 		}

@@ -6,7 +6,7 @@
 
 @implementation MainViewController
 
-	@synthesize myTableView;
+	@synthesize myTableView, historyTableView;
 	@synthesize mySearchBar;
 
 	- (void)dealloc; {
@@ -43,13 +43,17 @@
 	}
 
 	- (void)viewWillAppear:(BOOL)animated; {
+		[myTableView deselectRowAtIndexPath:myTableView.indexPathForSelectedRow animated: YES];
 		[super viewWillAppear: animated];
 	}
 
 	- (void)viewDidLoad; {
 		internetReach = [[Reachability reachabilityForInternetConnection] retain];
 		[internetReach startNotifer];
-				
+		
+		// check for history
+		[historyTableView setHidden:YES];
+		
 		[myTableView setSeparatorColor:UIColorFromRGB(0xEEEEEE)];
 
 		[mySearchBar becomeFirstResponder];
@@ -72,9 +76,7 @@
 	- (BOOL)networkAvailable; {
 		
 		if ([internetReach currentReachabilityStatus] == NotReachable) {
-			UIAlertView *networkAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Network Error",nil) message:NSLocalizedString(@"Sorry, the network isn't available.",nil) delegate:self cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-			[networkAlert show];
-			Release(networkAlert);
+			UIAlertViewQuick(@"Network Error", @"Sorry, the network is not available", @"OK");
 			return NO;
 		}
 		return YES;
@@ -125,6 +127,7 @@
 	}
 
 	- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText; {   // called when text changes (including clear)
+		[historyTableView setHidden:[searchText isEqualToString:@""] ? NO : YES];
 		
 		if([searchText isEqualToString:@""]) {
 			[self toggleActivityIndicator:NO];
@@ -262,7 +265,6 @@
 		
 		ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:[results objectAtIndexA:indexPath.row]] autorelease];
 		[self.navigationController pushViewController:resultViewController animated:YES];
-		[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	}
 
 @end

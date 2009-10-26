@@ -14,6 +14,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		5DD8F2911093E7AE003AC690 /* IndicatorMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 5DD8F2901093E7AE003AC690 /* IndicatorMask.png */; };
+		BA0FCCD31095A28B00593B42 /* UIAlertView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0FCCD11095A28B00593B42 /* UIAlertView+Extensions.m */; };
 		BA569DBB108DAD53004D5EB6 /* TopShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = BA569DBA108DAD53004D5EB6 /* TopShadow.png */; };
 		BA577530108EDAAA00C6828C /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA57752E108EDAAA00C6828C /* ResultViewController.m */; };
 		BA6F3392107996B7002A3A22 /* UITableView+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6F3390107996B7002A3A22 /* UITableView+Extensions.m */; };
@@ -68,6 +69,8 @@
 		32CA4F630368D1EE00C91783 /* Domainr_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Domainr_Prefix.pch; sourceTree = "<group>"; };
 		5DD8F2901093E7AE003AC690 /* IndicatorMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IndicatorMask.png; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		BA0FCCD11095A28B00593B42 /* UIAlertView+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Extensions.m"; sourceTree = "<group>"; };
+		BA0FCCD21095A28B00593B42 /* UIAlertView+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Extensions.h"; sourceTree = "<group>"; };
 		BA569DBA108DAD53004D5EB6 /* TopShadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TopShadow.png; sourceTree = "<group>"; };
 		BA57752D108EDAAA00C6828C /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultViewController.h; path = Classes/ResultViewController.h; sourceTree = "<group>"; };
 		BA57752E108EDAAA00C6828C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultViewController.m; path = Classes/ResultViewController.m; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 			children = (
 				BA9D0D370FCA4FC000E2B262 /* CJSON */,
 				BA754CD1107987370024A629 /* Foundation */,
+				BA0FCCBC10959E6700593B42 /* History */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				BAA03641109035C600221219 /* Result */,
 				BA8F27951092BCD3000CBAF0 /* WebView */,
@@ -221,6 +225,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA0FCCBC10959E6700593B42 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
 		BA754CD1107987370024A629 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +245,8 @@
 				BAAD93E0108C1D3200A27DC6 /* NSScanner+Extensions.m */,
 				BA6F3394107996BF002A3A22 /* NSObject+Extensions.h */,
 				BA6F3393107996BF002A3A22 /* NSObject+Extensions.m */,
+				BA0FCCD11095A28B00593B42 /* UIAlertView+Extensions.m */,
+				BA0FCCD21095A28B00593B42 /* UIAlertView+Extensions.h */,
 				BA8F25D5109266DC000CBAF0 /* SDImage.h */,
 				BA8F25D4109266DC000CBAF0 /* SDImage.m */,
 				BAAD945E108C253900A27DC6 /* Reachability.h */,
@@ -400,6 +413,7 @@
 				BAA036561090380600221219 /* DomainrTableView.m in Sources */,
 				BA8F25D6109266DC000CBAF0 /* SDImage.m in Sources */,
 				BA8F27991092BD25000CBAF0 /* WebViewController.m in Sources */,
+				BA0FCCD31095A28B00593B42 /* UIAlertView+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

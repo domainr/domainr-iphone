@@ -2,7 +2,6 @@
 
 #define defaults [NSUserDefaults userDefaults]
 
-
 @interface NSUserDefaults (Extensions) 
 
 + (NSUserDefaults*) userDefaults;

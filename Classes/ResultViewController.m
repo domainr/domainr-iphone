@@ -202,17 +202,17 @@
 					[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 				}
 
-				[[cell textLabel] setText:NSLocalizedString(buttonTitle,nil)];
+				[[cell textLabel] setText:SDLocalizedString(buttonTitle)];
 			}
 		}
 		else if(indexPath.section == kMailSection) {
 			if(indexPath.row == 0) {
-				[[cell textLabel] setText:NSLocalizedString(@"Save (via Email)",nil)];
+				[[cell textLabel] setText:SDLocalizedString(@"Save (via Email)")];
 			}
 		}
 		else if(indexPath.section == kTLDSection) {
 			if(indexPath.row == 0) {
-				[[cell textLabel] setText:NSLocalizedString(@"TLD Info",nil)];
+				[[cell textLabel] setText:SDLocalizedString(@"TLD Info")];
 				[cell setAccessoryType:UITableViewCellAccessoryNone];
 			}
 			if (tldInfoOpen) {
@@ -223,20 +223,20 @@
 		}
 		else if(indexPath.section == kToolSection) {
 			if(indexPath.row == 0) {
-				[[cell textLabel] setText:NSLocalizedString(@"Tools",nil)];
+				[[cell textLabel] setText:SDLocalizedString(@"Tools")];
 				[cell setAccessoryType:UITableViewCellAccessoryNone];
 				[cell setAccessoryView:[[[UIImageView alloc] initWithImage:toolsOpen ? [SDImage imageNamed:@"RevealDisclosureIndicatorUp.png"] : [SDImage imageNamed:@"RevealDisclosureIndicatorDown.png"]] autorelease]];
 				[[cell textLabel] setTextColor:toolsOpen ? [UIColor grayColor] : [UIColor blackColor]];
 				return cell;
 			}
 			else if([result isResolvable] && indexPath.row == 1) {
-				[[cell textLabel] setText:NSLocalizedString(@"Visit Site (www)",nil)];
+				[[cell textLabel] setText:SDLocalizedString(@"Visit Site (www)")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 			}
 			else if((![result isResolvable] && indexPath.row == 1) || indexPath.row == 2) {
-				[[cell textLabel] setText:NSLocalizedString(@"WHOIS",nil)];
+				[[cell textLabel] setText:SDLocalizedString(@"WHOIS")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -314,7 +314,7 @@
 		MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 		picker.mailComposeDelegate = self;
 		[picker setToRecipients:nil];
-		[picker setSubject:[NSString stringWithFormat:NSLocalizedString(@"Domainr saved domain: %@",nil),result.domainName]];
+		[picker setSubject:SDLocalizedStringWithFormat(@"Domainr saved domain: %@",result.domainName)];
 		
 		NSString *emailBody = [NSString stringWithFormat:@"%@",@""];
 		[picker setMessageBody:emailBody isHTML:NO];		
