@@ -34,10 +34,3 @@
 - (unsigned int) replaceOccurrencesOfString: (NSString*) target withString: (NSString*) replacement;
 
 @end
-
-
-@interface NSString (UIKitDrawing)
-
-- (CGSize) drawInRect: (CGRect) theRect highlightedString: (NSString*) highlightedString normalFont: (UIFont*) normalFont highlightedFont: (UIFont*) highlightedFont;
-
-@end

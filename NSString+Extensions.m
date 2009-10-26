@@ -1,9 +1,6 @@
 #import "NSScanner+Extensions.h"
 #import "NSString+Extensions.h"
 
-
-/* Data */
-
 @implementation NSString (Data)
 
     + (id) stringWithData: (NSData*) data; {
@@ -23,9 +20,6 @@
     }
 
 @end
-
-
-/* Extensions */
 
 @implementation NSString (Extensions)
 
@@ -107,9 +101,6 @@
 
 @end
 
-
-/* Replace */
-
 @implementation NSMutableString (Replace)
 
     - (void) appendStringA: (id) theString; {
@@ -121,70 +112,6 @@
         if (target && replacement)
             return [self replaceOccurrencesOfString: target withString: replacement options: 0 range: (NSRange){0, [self length]}];
         return 0;
-    }
-
-@end
-
-
-/* UIKit Drawing */
-
-@implementation NSString (UIKitDrawing)
-
-    - (CGSize) drawInRect: (CGRect) theRect highlightedString: (NSString*) highlightedString normalFont: (UIFont*) normalFont highlightedFont: (UIFont*) highlightedFont; {
-        NSRange highlightRange = (EmptyString(highlightedString)) ? NSMakeRange(NSNotFound, 0) : [self rangeOfString: highlightedString options: NSCaseInsensitiveSearch];
-
-		CGSize size = CGSizeMake(0,0);
-		CGSize out;
-		
-        if (highlightRange.location == NSNotFound) {
-            out = [self drawAtPoint: theRect.origin forWidth: theRect.size.width withFont: normalFont lineBreakMode: UILineBreakModeTailTruncation];
-            return out;
-        }
-		
-        /* start */
-        if (highlightRange.location > 0) {
-            NSString* substring = [self substringToIndex: highlightRange.location];
-
-            size = [substring drawAtPoint: theRect.origin forWidth: theRect.size.width withFont: normalFont lineBreakMode: UILineBreakModeTailTruncation];
-            
-            theRect.origin.x += size.width;
-            theRect.size.width -= size.width;
-        }
-        
-		out = size;
-		
-        if (theRect.size.width < 10)
-            return out;
-        
-        /* middle */
-        
-        if (highlightRange.location >= 0 && theRect.size.width > 0) {
-            NSString* substring = [self substringWithRange: highlightRange];
-
-            size = [substring sizeWithFont: highlightedFont forWidth: theRect.size.width lineBreakMode: UILineBreakModeTailTruncation];
-
-            if (size.width != 0) {
-                [substring drawAtPoint: theRect.origin forWidth: theRect.size.width withFont: highlightedFont lineBreakMode: UILineBreakModeTailTruncation];
-                theRect.origin.x += size.width;
-                theRect.size.width -= size.width;
-            }
-        }
-
-		out.width += size.width;		
-		
-			
-        if (theRect.size.width < 10)
-            return out;
-            
-        /* end */
-        
-        if (highlightRange.location + highlightRange.length < [self length] && theRect.size.width > 0) {
-            NSString* substring = [self substringFromIndex: highlightRange.location + highlightRange.length];
-            CGSize size = [substring drawAtPoint: theRect.origin forWidth: theRect.size.width withFont: normalFont lineBreakMode: UILineBreakModeTailTruncation];
-
-			out.width += size.width;
-		}
-		return out;
     }
 
 @end
