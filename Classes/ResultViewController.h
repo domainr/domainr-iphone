@@ -9,12 +9,14 @@
 	Reachability *internetReach;
 	NetworkStatus status;
 	
-	BOOL tldInfoOpen;
-	BOOL toolsOpen;
-	BOOL isGoingBack;
+	BOOL tldInfoOpen;	//
+	BOOL toolsOpen;		//
+	BOOL isGoingBack;	// to hide the navbar when returning to search view
+	BOOL isDeeper;		// for a result that is from another result 
 }
 
 @property (retain) Result *result;
+@property BOOL isDeeper;
 
 - (id)initWithResult:(Result*)newResult;
 - (void)displayComposerSheet;
