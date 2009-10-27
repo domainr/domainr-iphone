@@ -58,6 +58,7 @@
 		[historyTableView setHidden: [historyArray count] ? NO : YES];
 		
 		[myTableView setSeparatorColor:UIColorFromRGB(0xEEEEEE)];
+		[historyTableView setSeparatorColor:UIColorFromRGB(0xEEEEEE)];
 
 		[mySearchBar becomeFirstResponder];
 		[self setKeyboardState:YES];

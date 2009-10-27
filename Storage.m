@@ -115,6 +115,7 @@
 			}
 			sqlite3_reset(statement);
 		}
+		[historyArray reverse];
 		return historyArray;
 	}
 

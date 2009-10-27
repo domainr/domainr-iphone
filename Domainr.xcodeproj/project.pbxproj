@@ -65,6 +65,7 @@
 		BAB66E4C1096C77F00D0E097 /* magnifying_glass.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB66E4B1096C77F00D0E097 /* magnifying_glass.png */; };
 		BAB66E5C1096C9AF00D0E097 /* tools_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB66E5B1096C9AF00D0E097 /* tools_gray.png */; };
 		BAB66F4D1096F8B800D0E097 /* magnifying_glass_15x15.png in Resources */ = {isa = PBXBuildFile; fileRef = BAB66F4C1096F8B800D0E097 /* magnifying_glass_15x15.png */; };
+		BAB66F7E1096FF1E00D0E097 /* NSMutableArray+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB66F7D1096FF1E00D0E097 /* NSMutableArray+Extensions.m */; };
 		BAD5C01A107D9C4000C819F4 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD5C019107D9C4000C819F4 /* Result.m */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +155,8 @@
 		BAB66E4B1096C77F00D0E097 /* magnifying_glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifying_glass.png; sourceTree = "<group>"; };
 		BAB66E5B1096C9AF00D0E097 /* tools_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tools_gray.png; sourceTree = "<group>"; };
 		BAB66F4C1096F8B800D0E097 /* magnifying_glass_15x15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = magnifying_glass_15x15.png; sourceTree = "<group>"; };
+		BAB66F7C1096FF1E00D0E097 /* NSMutableArray+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Extensions.h"; sourceTree = "<group>"; };
+		BAB66F7D1096FF1E00D0E097 /* NSMutableArray+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Extensions.m"; sourceTree = "<group>"; };
 		BAD5C018107D9C4000C819F4 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Result.h; path = Classes/Result.h; sourceTree = "<group>"; };
 		BAD5C019107D9C4000C819F4 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Result.m; path = Classes/Result.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -269,8 +272,10 @@
 				BAAD93E0108C1D3200A27DC6 /* NSScanner+Extensions.m */,
 				BA6F3394107996BF002A3A22 /* NSObject+Extensions.h */,
 				BA6F3393107996BF002A3A22 /* NSObject+Extensions.m */,
-				BA0FCCD11095A28B00593B42 /* UIAlertView+Extensions.m */,
 				BA0FCCD21095A28B00593B42 /* UIAlertView+Extensions.h */,
+				BA0FCCD11095A28B00593B42 /* UIAlertView+Extensions.m */,
+				BAB66F7C1096FF1E00D0E097 /* NSMutableArray+Extensions.h */,
+				BAB66F7D1096FF1E00D0E097 /* NSMutableArray+Extensions.m */,
 				BA8F25D5109266DC000CBAF0 /* SDImage.h */,
 				BA8F25D4109266DC000CBAF0 /* SDImage.m */,
 				BAAD945E108C253900A27DC6 /* Reachability.h */,
@@ -462,6 +467,7 @@
 				BA0FCCD31095A28B00593B42 /* UIAlertView+Extensions.m in Sources */,
 				BA0FCDD41096231100593B42 /* Storage.m in Sources */,
 				BA0FCDF41096253600593B42 /* RegistrarSelectionController.m in Sources */,
+				BAB66F7E1096FF1E00D0E097 /* NSMutableArray+Extensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
