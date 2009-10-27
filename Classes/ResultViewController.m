@@ -9,6 +9,10 @@
 		return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 	}
 
+	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {
+		[self.tableView reloadData];
+	}
+
 	- (void)dealloc {
 		Release(result);
 		[super dealloc];
@@ -95,7 +99,8 @@
 
 		if(indexPath.section == kRegisterSection) {
 			if (indexPath.row == 0) {
-								
+				[[cell textLabel] setText:@""];
+				[cell setAccessoryType:UITableViewCellAccessoryNone];
 				CGRect rect = [[UIScreen mainScreen] bounds];
 				UILabel *domainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, rect.size.width - 40.0, 40.0)];
 				domainLabel.text = [NSString stringWithFormat:@"%@%@", result.imageType == kTLD ? [NSString stringWithFormat:@".%@",result.domainName] : result.domainName, result.path ? result.path : @""];
