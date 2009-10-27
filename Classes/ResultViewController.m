@@ -231,7 +231,7 @@
 				return cell;
 			}
 			else if([result isResolvable] && indexPath.row == 1) {
-				[[cell textLabel] setText:SDLocalizedString(@"Visit Site (www)")];
+				[[cell textLabel] setText:SDLocalizedString(@"Visit Site")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

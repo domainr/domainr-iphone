@@ -11,6 +11,7 @@
 
 	- (void)dealloc; {
 		Release(myTableView);
+		Release(historyTableView);
 		Release(mySearchBar);
 		Release(activityIndicator);
 		Release(internetReach);
@@ -52,7 +53,8 @@
 		[internetReach startNotifer];
 		
 		// check for history
-		[historyTableView setHidden:YES];
+		historyArray = [[[Storage instance] recentHistory] retain];
+		[historyTableView setHidden: [historyArray count] ? NO : YES];
 		
 		[myTableView setSeparatorColor:UIColorFromRGB(0xEEEEEE)];
 
@@ -67,11 +69,8 @@
 		Release(internetReach);
 		[super viewDidUnload];
 	}
-			
 
-#pragma mark -
 #pragma mark Various helpers
-#pragma mark -
 
 	- (BOOL)networkAvailable; {
 		
@@ -97,8 +96,6 @@
 
 	- (void)setKeyboardState:(BOOL)show; {
 		keyboardHidden = !show;
-		
-		
 		CGRect newFrame = [myTableView frame];
 		if(show) {
 			newFrame.size.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 460 - 44 - KEYBOARD_HEIGHT_PORTRAIT : 300 - 44 - KEYBOARD_HEIGHT_LANDSCAPE;
@@ -108,15 +105,14 @@
 			[mySearchBar resignFirstResponder];
 		}
 		[myTableView setFrame:newFrame];
+		[historyTableView setFrame:newFrame];
 	}
 
 	- (void)_showKeyboardWorkAround; {
 		[self setKeyboardState:YES];
 	}
 	
-#pragma mark -
 #pragma mark UISearchBar methods
-#pragma mark -
 
 	- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar; { // return NO to not become first responder
 		return YES;
@@ -127,15 +123,14 @@
 	}
 
 	- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText; {   // called when text changes (including clear)
-		[historyTableView setHidden:[searchText isEqualToString:@""] ? NO : YES];
-		
-		if([searchText isEqualToString:@""]) {
-			[self toggleActivityIndicator:NO];
-			[results removeAllObjects];
-			[myTableView reloadData];
-			return;
+		if(EmptyString(searchText)) {
+			[self showHistory];
 		}
-		[self search];
+		else {
+			[historyTableView setHidden:YES];
+			[myTableView setHidden:NO];
+			[self search];			
+		}
 	}
 
 	- (BOOL)searchBar:(UISearchBar *)searchBar shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text; { // called before text changes
@@ -156,6 +151,9 @@
 	- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar; { // called when keyboard search button pressed
 		[self setKeyboardState:NO];
 		if(![self networkAvailable]) return;
+		
+//
+		[[Storage instance] storeSearch:searchBar.text]; 
 		
 		[self search];
 	}
@@ -181,9 +179,7 @@
 		}
 	}
 
-#pragma mark -
 #pragma mark NSURLConnection methods 
-#pragma mark -
 
 	- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data; {
 		[receivedData appendData:data];
@@ -230,19 +226,30 @@
 		[whiteBgView setHidden:NO];
 	}
 
-#pragma mark -
 #pragma mark Table view methods
-#pragma mark -
 
 	- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath; {
-		if(results == nil) return 40;
-		
-		NSString *domainNameString = [[results objectAtIndexA:indexPath.row] domainName];
-		CGSize aSize;	
-		aSize = [domainNameString sizeWithFont:[UIFont systemFontOfSize:17] 
+		if (tableView == myTableView) {
+			if(results == nil) return 40;
+			
+			NSString *domainNameString = [[results objectAtIndexA:indexPath.row] domainName];
+			CGSize aSize;	
+			aSize = [domainNameString sizeWithFont:[UIFont systemFontOfSize:17] 
+								 constrainedToSize:CGSizeMake(UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 260.0 : 420, 1000)  
+									 lineBreakMode:UILineBreakModeTailTruncation];  
+			return aSize.height+21;				
+		}
+		else if (tableView == historyTableView) {
+			if(results == nil) return 50;
+			
+			NSString *searchString = [historyArray objectAtIndexA:indexPath.row];
+			CGSize aSize;	
+			aSize = [searchString sizeWithFont:[UIFont systemFontOfSize:17] 
 							 constrainedToSize:CGSizeMake(UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 260.0 : 420, 1000)  
-						lineBreakMode:UILineBreakModeTailTruncation];  
-		return aSize.height+21;	
+								 lineBreakMode:UILineBreakModeTailTruncation];  
+			return aSize.height + 21;
+		}
+		return 40;		
 	}
 
 	- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
@@ -250,21 +257,87 @@
 	}
 
 	- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section; {
-		if(results == nil) return 0;
-		return [results count];
+		if (tableView == myTableView) {
+			return (results) ? [results count] : 0;
+		}
+		else if (tableView == historyTableView) {
+			return (historyArray) ? [historyArray count] : 0;
+		}
+		return 0;
 	}
 
 	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
-		ResultCell *cell = (ResultCell *)[tableView cellForClass:[ResultCell class]];
-		[cell setResult:[results objectAtIndexA:indexPath.row]];
-		[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-		return cell;
+		if (tableView == myTableView) {
+			ResultCell *cell = (ResultCell *)[tableView cellForClass:[ResultCell class]];
+			[cell setResult:[results objectAtIndexA:indexPath.row]];
+			[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+			return cell;
+		}
+		else if (tableView == historyTableView) {
+			UITableViewCell *cell = (UITableViewCell *)[tableView cellForClass:[UITableViewCell class]];
+			[[cell textLabel] setText:[historyArray objectAtIndexA:indexPath.row]];
+			[[cell textLabel] setFont:[UIFont systemFontOfSize:17]];
+			[[cell textLabel] setTextColor:[UIColor darkGrayColor]];
+			[[cell textLabel] setLineBreakMode:UILineBreakModeWordWrap];
+			[[cell textLabel] setNumberOfLines:0];
+			cell.imageView.image = [SDImage imageNamed:@"magnifying_glass_15x15.png"];
+			return cell;
+		}
+		return nil;
 	}
 
 	- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath; {
-		
-		ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:[results objectAtIndexA:indexPath.row]] autorelease];
-		[self.navigationController pushViewController:resultViewController animated:YES];
+		if (tableView == myTableView) {
+			Result *chosenResult = [results objectAtIndex:indexPath.row];
+			[[Storage instance] storeSearch: chosenResult.domainName];
+			ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:chosenResult] autorelease];
+			[self.navigationController pushViewController:resultViewController animated:YES];
+		}
+		else if(tableView == historyTableView) {
+			mySearchBar.text = [historyArray objectAtIndexA:indexPath.row];
+		}
+	}
+
+	- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath; {
+		if (tableView == historyTableView) {
+			//return 2;
+		}
+		return 0;
+	}
+
+#pragma mark -
+
+	- (UITableViewCellEditingStyle) tableView:(UITableView*) theTableView editingStyleForRowAtIndexPath:(NSIndexPath*) indexPath; {
+		return (theTableView == historyTableView) ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+	}
+
+	- (void) tableView:(UITableView*) theTableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath*) indexPath {
+		if (theTableView == historyTableView) {
+			if (editingStyle == UITableViewCellEditingStyleDelete) {				
+				NSString *searchString = [historyArray objectAtIndex: indexPath.row];
+				[[Storage instance] removeItem:searchString];
+				
+				[historyArray removeObjectAtIndex:indexPath.row];
+				if ([historyArray count] == 0) {
+					[historyTableView reloadData];
+				} else {
+					[historyTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+				}
+			}			
+		}
+	}
+
+#pragma mark -
+
+	- (void) showHistory; {
+		[self toggleActivityIndicator:NO];
+		[results removeAllObjects];
+		myTableView.hidden = YES;
+		[myTableView reloadData];
+		//historyArray = [[[Storage instance] recentHistory] retain];
+		[historyArray setArray:[[Storage instance] recentHistory]]; 
+		historyTableView.hidden = ([historyArray count] == 0);
+		[historyTableView reloadData];
 	}
 
 @end

@@ -6,6 +6,7 @@
     + (NSUserDefaults*) userDefaults; {
         if (!hasSyncedDefaults) {
             NSMutableDictionary* defaultsDictionary = [NSMutableDictionary dictionary];
+			[defaultsDictionary setObject: @"1" forKey: @"kStorage"];
             [[NSUserDefaults standardUserDefaults] registerDefaults: defaultsDictionary];
             hasSyncedDefaults = YES;
         }

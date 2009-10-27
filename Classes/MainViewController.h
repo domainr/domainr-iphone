@@ -19,8 +19,7 @@
 	
 	NSString				*searchQuery;
 	NSMutableArray			*results;
-	NSMutableArray			*favouritesArray;
-	NSMutableArray			*resultObjectsArray;
+	NSMutableArray			*historyArray;
 	BOOL					loading;
 	
 	NSDate					*previousTimeStamp;
@@ -47,5 +46,7 @@
 
 - (void) search;
 - (BOOL) networkAvailable;
+
+- (void) showHistory;
 
 @end

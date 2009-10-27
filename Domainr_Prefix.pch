@@ -1,6 +1,7 @@
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
+	#import "Storage.h"
 	#import "SDImage.h"
 	#import "UIAlertView+Extensions.h"
 	#import "NSObject+Extensions.h"
