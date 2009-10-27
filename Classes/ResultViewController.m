@@ -134,7 +134,7 @@
 
 	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
 		UITableViewCell *cell = (UITableViewCell *)[tableView cellForClass:[UITableViewCell class]];
-		
+		cell.imageView.image = nil;
 		if(indexPath.section == kRegisterSection) {
 			if (indexPath.row == 0) {
 				
@@ -227,6 +227,7 @@
 				[cell setAccessoryType:UITableViewCellAccessoryNone];
 				[cell setAccessoryView:[[[UIImageView alloc] initWithImage:toolsOpen ? [SDImage imageNamed:@"RevealDisclosureIndicatorUp.png"] : [SDImage imageNamed:@"RevealDisclosureIndicatorDown.png"]] autorelease]];
 				[[cell textLabel] setTextColor:toolsOpen ? [UIColor grayColor] : [UIColor blackColor]];
+				cell.imageView.image = [SDImage imageNamed:toolsOpen ? @"tools_gray.png" : @"tools.png"];
 				return cell;
 			}
 			else if([result isResolvable] && indexPath.row == 1) {
@@ -234,12 +235,14 @@
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+				cell.imageView.image = [SDImage imageNamed:@"web.png"];
 			}
 			else if((![result isResolvable] && indexPath.row == 1) || indexPath.row == 2) {
 				[[cell textLabel] setText:SDLocalizedString(@"WHOIS")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+				cell.imageView.image = [SDImage imageNamed:@"magnifying_glass.png"];
 			}
 		}
 		return cell;
