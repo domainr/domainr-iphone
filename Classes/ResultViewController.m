@@ -57,51 +57,6 @@
 		return 0;
 	}
 
-	- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section; {
-		
-		if(section == -1) {
-			CGRect rect = [[UIScreen mainScreen] bounds];
-			UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, 70.0)] autorelease];
-			UILabel *statusLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 15.0, rect.size.width, 30.0)] autorelease];
-			
-			if(result.imageType == kAvailable) {
-				statusLabel.text = @"This domain is available.";
-				statusLabel.textColor = [UIColor greenColor];
-			}
-			else if(result.imageType == kUnavailable) {
-				statusLabel.text = @"This domain is not available.";
-				statusLabel.textColor = [UIColor redColor];
-			}
-			else if(result.imageType == kMaybe) {
-				statusLabel.text = @"This domain might be available.";
-				statusLabel.textColor = [UIColor greenColor];
-			}
-			else if(result.imageType == kTaken) {
-				statusLabel.text = @"This domain is taken.";
-				statusLabel.textColor = [UIColor blueColor];
-			}
-			else if(result.imageType == kTLD) {
-				statusLabel.text = @"Top-Level Domain";
-				statusLabel.textColor = [UIColor darkGrayColor];				
-			}
-			else if(result.imageType == kSubdomain) {
-				NSArray *subStrings = [result.domainName componentsSeparatedByString:@"."];
-				statusLabel.text = [NSString stringWithFormat:@"Subdomain of .%@",[subStrings objectAtIndex:1]];
-				statusLabel.textColor = [UIColor darkGrayColor];
-			}
-			statusLabel.textAlignment = UITextAlignmentCenter;
-			statusLabel.backgroundColor = [UIColor clearColor];
-			statusLabel.font = [UIFont systemFontOfSize:20];
-			statusLabel.adjustsFontSizeToFitWidth = YES;
-			statusLabel.shadowColor = [UIColor whiteColor];
-			statusLabel.shadowOffset = CGSizeMake(0, 1);
-			
-			[headerView addSubview:statusLabel];
-			return headerView;
-		}
-		return nil;
-	}
-
 	- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
 		return 4;
 	}
@@ -134,13 +89,13 @@
 
 	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath; {
 		UITableViewCell *cell = (UITableViewCell *)[tableView cellForClass:[UITableViewCell class]];
+		for (UIView* view in [cell.contentView subviews])
+			[view removeFromSuperview];
 		cell.imageView.image = nil;
+
 		if(indexPath.section == kRegisterSection) {
 			if (indexPath.row == 0) {
-				
-				for (UIView* view in [cell.contentView subviews])
-					[view removeFromSuperview];
-				
+								
 				CGRect rect = [[UIScreen mainScreen] bounds];
 				UILabel *domainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, rect.size.width - 40.0, 40.0)];
 				domainLabel.text = [NSString stringWithFormat:@"%@%@", result.imageType == kTLD ? [NSString stringWithFormat:@".%@",result.domainName] : result.domainName, result.path ? result.path : @""];
@@ -181,9 +136,9 @@
 				statusLabel.font = [UIFont systemFontOfSize:18];
 				statusLabel.adjustsFontSizeToFitWidth = YES;
 				[cell.contentView addSubview:statusLabel];
+				Release(statusLabel);
 				
 				[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-				Release(statusLabel);
 			}
 			else if (indexPath.row == 1) {
 				
