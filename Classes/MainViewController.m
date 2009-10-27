@@ -32,6 +32,7 @@
 			[self setKeyboardState:YES];
 		}
 		[myTableView reloadData];
+		[historyTableView reloadData];
 	}
 
 #pragma mark UIView methods
