@@ -189,7 +189,10 @@
 	- (void)connectionDidFinishLoading:(NSURLConnection *)connection; {
 		[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(_showClearButton) object:nil];
 		NSError *error = nil;
-		NSDictionary *dictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:receivedData error:&error];
+		
+//        NSLog(@"%@",[NSString stringWithData:receivedData]);
+        
+        NSDictionary *dictionary = [[CJSONDeserializer deserializer] deserializeAsDictionary:receivedData error:&error];
 		
 		if(results)
 			Release(results);

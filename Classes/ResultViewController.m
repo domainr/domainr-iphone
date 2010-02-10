@@ -1,9 +1,11 @@
 #import "ResultViewController.h"
+#import "RegistrarSelectorViewController.h"
 #import "Result.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ResultViewController
 
-	@synthesize result, isDeeper;
+	@synthesize result, isDeeper, info;
 
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
 		return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
@@ -19,9 +21,10 @@
 	}
 
 	- (id)initWithResult:(Result *)newResult; {
-		self = [super initWithStyle:UITableViewStyleGrouped];
-		self.result = newResult;
-		self.title = result.imageType == kTLD ? [NSString stringWithFormat:@".%@", newResult.domainName] : newResult.domainName;
+		if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+            self.result = newResult;
+            self.title = result.imageType == kTLD ? [NSString stringWithFormat:@".%@", newResult.domainName] : newResult.domainName;
+        }
 		return self;
 	}
 
@@ -37,7 +40,26 @@
 	}
 
 	- (void)viewDidLoad; {
-		tldInfoOpen = toolsOpen = NO;
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [activityIndicator setFrame:CGRectMake(145, 220, 30, 30)];
+        [self.view addSubview:activityIndicator];
+        [activityIndicator startAnimating];
+        
+        NSString *urlInfoString = [NSString stringWithFormat: @"http://domai.nr/api/json/info?q=%@", result.domainName];
+		
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [urlInfoString escapedString]]
+																  cachePolicy: NSURLRequestUseProtocolCachePolicy
+															  timeoutInterval: 60.0];
+		[theRequest setHTTPMethod:@"GET"];
+		
+		theConnection = [[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+		if (theConnection) {
+			receivedData=[[NSMutableData data] retain];
+		} 
+		else {
+		}
+        
+        loading = YES;
 		[super viewDidLoad];
 	}
 
@@ -53,15 +75,31 @@
 		kToolSection
 	};
 
-
 	- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
-		if (section == 0) {
-			return 70.0;
+		if (section == kRegisterSection) {
+			return 90.0;
 		}
+        if (section == kToolSection || section == kTLDSection) {
+            return 30;
+        }
 		return 0;
 	}
 
+    - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section; {
+        if (section == kToolSection) {
+            return @"Tools";
+        }
+        else if (section == kTLDSection) {
+            return @"Top-level Domain Info";
+        }
+
+        return nil;
+    }
+
 	- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
+        if (loading) {
+            return 1;
+        }        
 		return 4;
 	}
 
@@ -77,16 +115,13 @@
 			return 1;
 		}	
 		else if(section == kTLDSection) {
-			return 1;
+			return 2;
 		}
 		else if(section == kToolSection) {
-			if(toolsOpen) {
-				if([result isResolvable]) {
-					return 3;
-				}
-				return 2;
-			}
-			return 1;
+            if([result isResolvable]) {
+					return 2;
+            }
+            return 1;
 		}
 		return 0;
 	}
@@ -102,7 +137,7 @@
 				[[cell textLabel] setText:@""];
 				[cell setAccessoryType:UITableViewCellAccessoryNone];
 				CGRect rect = [[UIScreen mainScreen] bounds];
-				UILabel *domainLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, rect.size.width - 40.0, 40.0)];
+				UILabel *domainLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 0, rect.size.width - 35.0, 40.0)];
 				domainLabel.text = [NSString stringWithFormat:@"%@%@", result.imageType == kTLD ? [NSString stringWithFormat:@".%@",result.domainName] : result.domainName, result.path ? result.path : @""];
 				domainLabel.font = [UIFont boldSystemFontOfSize:24];
 				domainLabel.textColor = [UIColor blackColor];
@@ -110,36 +145,55 @@
 				domainLabel.adjustsFontSizeToFitWidth = YES;
 				[cell.contentView addSubview:domainLabel];
 				Release(domainLabel);
-				
-				UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 45.0, rect.size.width - 40.0, 30.0)];
+                
+				UILabel *statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(7, 42.0, rect.size.width - 34.0, 30.0)];
+                statusLabel.layer.cornerRadius = 4;
+				statusLabel.backgroundColor = [UIColor clearColor];
+				statusLabel.font = [UIFont systemFontOfSize:17];
+				statusLabel.adjustsFontSizeToFitWidth = YES;
+                
 				if(result.imageType == kAvailable) {
-					statusLabel.text = @"This domain is available.";
-					statusLabel.textColor = [UIColor greenColor];
+					statusLabel.text = @" This domain is available. ";
+					statusLabel.textColor = UIColorFromRGB(0x23b000);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xffeeee);
 				}
 				else if(result.imageType == kUnavailable) {
-					statusLabel.text = @"This domain is not available.";
-					statusLabel.textColor = [UIColor redColor];
+					statusLabel.text = @" This domain is not available. ";
+					statusLabel.textColor = UIColorFromRGB(0xff4d00);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xffeee6);
 				}
 				else if(result.imageType == kMaybe) {
-					statusLabel.text = @"This domain might be available.";
-					statusLabel.textColor = [UIColor greenColor];
+					statusLabel.text = @" This domain might be available. ";
+					statusLabel.textColor = UIColorFromRGB(0xd1ad69) ;
 				}
 				else if(result.imageType == kTaken) {
-					statusLabel.text = @"This domain is taken.";
-					statusLabel.textColor = [UIColor blueColor];
-				}
+					statusLabel.text = @" This domain is taken. ";
+                    statusLabel.textColor = [UIColor blackColor];
+                    statusLabel.backgroundColor = UIColorFromRGB(0xffeeee);
+                }
 				else if(result.imageType == kTLD) {
-					statusLabel.text = @"Top-Level Domain";
-					statusLabel.textColor = [UIColor darkGrayColor];				
+					statusLabel.text = @" Top-Level Domain ";
+//                  statusLabel.textColor = UIColorFromRGB(0xf5f7f4) ;				
+                    statusLabel.textColor = [UIColor whiteColor];
+                    statusLabel.backgroundColor = UIColorFromRGB(0x7a7d79);
+                    statusLabel.font = [UIFont boldSystemFontOfSize:17];
+                    statusLabel.shadowColor = [UIColor darkGrayColor];
+                    statusLabel.shadowOffset = CGSizeMake(-1, 1);
 				}
 				else if(result.imageType == kSubdomain) {
 					NSArray *subStrings = [result.domainName componentsSeparatedByString:@"."];
-					statusLabel.text = [NSString stringWithFormat:@"Subdomain of .%@",[subStrings objectAtIndex:1]];
-					statusLabel.textColor = [UIColor darkGrayColor];
+					statusLabel.text = [NSString stringWithFormat:@" Subdomain of .%@ ", [subStrings objectAtIndex:1]];
+//					statusLabel.textColor = UIColorFromRGB(0xf5f7f4);
+                    statusLabel.textColor = [UIColor whiteColor];
+                    statusLabel.backgroundColor = UIColorFromRGB(0x7a7d79);
+                    statusLabel.font = [UIFont boldSystemFontOfSize:17];
+                    statusLabel.shadowColor = [UIColor darkGrayColor];
+                    statusLabel.shadowOffset = CGSizeMake(-1, 1);
 				}
-				statusLabel.backgroundColor = [UIColor clearColor];
-				statusLabel.font = [UIFont systemFontOfSize:18];
-				statusLabel.adjustsFontSizeToFitWidth = YES;
+                
+                CGSize labelSize = [statusLabel.text sizeWithFont:statusLabel.font];
+                [statusLabel setFrame:CGRectMake(7, 42, labelSize.width, 30)];
+                
 				[cell.contentView addSubview:statusLabel];
 				Release(statusLabel);
 				
@@ -155,7 +209,12 @@
 				}
 				else if([result isRegistrable]) {
 					buttonTitle = @"Register";
-					[cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+                    if (loading) {
+                        [cell setAccessoryType:UITableViewCellAccessoryNone];
+                    }
+                    else {
+                        [cell setAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+                    }
 				}
 				else {
 					buttonTitle = @"More info";
@@ -168,36 +227,30 @@
 		else if(indexPath.section == kMailSection) {
 			if(indexPath.row == 0) {
 				[[cell textLabel] setText:SDLocalizedString(@"Save (via Email)")];
+                //cell.imageView.image = [SDImage imageNamed:@"at_symbol.png"];
 			}
 		}
 		else if(indexPath.section == kTLDSection) {
 			if(indexPath.row == 0) {
-				[[cell textLabel] setText:SDLocalizedString(@"TLD Info")];
-				[cell setAccessoryType:UITableViewCellAccessoryNone];
+				[[cell textLabel] setText:SDLocalizedString(@"Wikipedia")];
+				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                cell.imageView.image = [SDImage imageNamed:@"wiki_icon.png"];
 			}
-			if (tldInfoOpen) {
-				if(indexPath.row == 1) {
-					
-				}
-			}
+            else if(indexPath.row == 1) {
+				[[cell textLabel] setText:SDLocalizedString(@"IANA")];
+				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                cell.imageView.image = [SDImage imageNamed:@"iana_icon.png"];
+			}            
 		}
 		else if(indexPath.section == kToolSection) {
-			if(indexPath.row == 0) {
-				[[cell textLabel] setText:SDLocalizedString(@"Tools")];
-				[cell setAccessoryType:UITableViewCellAccessoryNone];
-				[cell setAccessoryView:[[[UIImageView alloc] initWithImage:toolsOpen ? [SDImage imageNamed:@"RevealDisclosureIndicatorUp.png"] : [SDImage imageNamed:@"RevealDisclosureIndicatorDown.png"]] autorelease]];
-				[[cell textLabel] setTextColor:toolsOpen ? [UIColor grayColor] : [UIColor blackColor]];
-				cell.imageView.image = [SDImage imageNamed:toolsOpen ? @"tools_gray.png" : @"tools.png"];
-				return cell;
-			}
-			else if([result isResolvable] && indexPath.row == 1) {
+            if([result isResolvable] && indexPath.row == 0) {
 				[[cell textLabel] setText:SDLocalizedString(@"Visit Site")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 				cell.imageView.image = [SDImage imageNamed:@"web.png"];
 			}
-			else if((![result isResolvable] && indexPath.row == 1) || indexPath.row == 2) {
+			else if((![result isResolvable] && indexPath.row == 0) || indexPath.row == 1) {
 				[[cell textLabel] setText:SDLocalizedString(@"WHOIS")];
 				[[cell textLabel] setTextColor:[UIColor blackColor]];
 				[cell setAccessoryView:nil];
@@ -212,6 +265,11 @@
 		if(indexPath.section == kRegisterSection) {
 			if(indexPath.row == 1) {
 				isGoingBack = NO;
+                
+                if (loading) {
+                    return;
+                }
+                
 				if(result.imageType == kTaken) {
 					NSString *buyURL = [NSString stringWithFormat:@"http://domai.nr/%@/buy",result.domainName];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:buyURL] autorelease];
@@ -223,7 +281,7 @@
 					newResult.availability = @"tld";
 					newResult.domainName = [NSString stringWithFormat:@"%@",[subStrings objectAtIndex:1]];
 					newResult.registrars = result.registrars;
-					ResultViewController *resultViewController = [[ResultViewController alloc] initWithResult:newResult];
+					ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:newResult] autorelease];
 					resultViewController.isDeeper = YES;
 					[self.navigationController pushViewController:resultViewController animated:YES];
 				}
@@ -241,46 +299,96 @@
 		}
 		else if(indexPath.section == kMailSection) {
 			if(indexPath.row == 0) {				//email
+                [self setDefaultEmailAddress];
 				[self displayComposerSheet];
 			}
 		}
 		else if(indexPath.section == kTLDSection) { //tld info
-			tldInfoOpen = !tldInfoOpen;
-		}
+            isGoingBack = NO;
+
+            NSDictionary *tldinfo = [info objectForKey:@"tld"];
+            
+            if (indexPath.row == 0) {
+                //WIKI
+                NSString *wikiUrl = [tldinfo objectForKey:@"wikipedia_url"];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wikiUrl] autorelease];
+                [self.navigationController pushViewController:webViewController animated:YES];
+            }
+            else if (indexPath.row == 1) {
+                //IANA
+                NSString *ianaUrl = [tldinfo objectForKey:@"iana_url"];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:ianaUrl] autorelease];
+                [self.navigationController pushViewController:webViewController animated:YES];                
+            }
+        }
 		else if(indexPath.section == kToolSection) { //tools
-			
-			if(indexPath.row == 0) {
-				toolsOpen = !toolsOpen;
-				[tableView deselectRowAtIndexPath:indexPath animated:YES];
-				[tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section]  withRowAnimation:UITableViewRowAnimationFade];	
+            isGoingBack = NO;
+
+            if([result isResolvable] && indexPath.row == 0) {                
+                //WWW
+                NSString *wwwUrl = [info objectForKey:@"www_url"];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wwwUrl] autorelease];
+                [self.navigationController pushViewController:webViewController animated:YES];
 			}
-			else if([result isResolvable] && indexPath.row == 1) {
-					isGoingBack = NO;
-					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:[NSString stringWithFormat:@"http://domai.nr/%@/www",result.domainName]] autorelease];
-					[self.navigationController pushViewController:webViewController animated:YES];
-			}
-			else if((![result isResolvable] && indexPath.row == 1) || indexPath.row == 2) {
-				isGoingBack = NO;
-				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:[NSString stringWithFormat:@"http://domai.nr/%@/whois",result.domainName]] autorelease];
+			else if((![result isResolvable] && indexPath.row == 0) || indexPath.row == 1) {
+                //WHOIS
+                NSString *whoIsURL = [info objectForKey:@"whois_url"];
+				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:whoIsURL] autorelease];
 				[self.navigationController pushViewController:webViewController animated:YES];				
 			}
 		}
 		if(!(indexPath.section == kMailSection && indexPath.row == 0)) {
-			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+		//	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 		}
 	}
 
+    - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath; {
+        if (indexPath.section == kRegisterSection) {
+            isGoingBack = NO;
+            RegistrarSelectorViewController *registrarViewController = [[[RegistrarSelectorViewController alloc] initWithResult:result] autorelease];
+            [self.navigationController pushViewController:registrarViewController animated:YES];
+        }
+    }
+
+#pragma mark NSURLConnection
+
+    - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data; {
+        [receivedData appendData:data];
+    }
+
+    - (void)connectionDidFinishLoading:(NSURLConnection *)connection; {
+        NSError *error = nil;
+        
+//        NSLog(@"%@",[NSString stringWithData:receivedData]);
+        
+        info = [[[CJSONDeserializer deserializer] deserializeAsDictionary:receivedData error:&error] retain];
+        
+        result.registrars = [info objectForKey:@"registrars"];
+        
+        [receivedData setLength:0];
+        Release(receivedData);
+        Release(connection);
+        
+        [activityIndicator stopAnimating];
+        loading = NO;
+        [self.tableView reloadData];
+    }
+
 #pragma mark -
+
+    - (void)setDefaultEmailAddress; {
+        //TODO: show alertview to ask for default email address
+    }
 
 	- (void)displayComposerSheet; {
 		isGoingBack = NO; 
 		MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 		picker.mailComposeDelegate = self;
 		[picker setToRecipients:nil];
-		[picker setSubject:SDLocalizedStringWithFormat(@"Domainr saved domain: %@",result.domainName)];
+		[picker setSubject:SDLocalizedStringWithFormat(@"Domainr: %@",result.domainName)];
 		
-		NSString *emailBody = [NSString stringWithFormat:@"%@",@""];
-		[picker setMessageBody:emailBody isHTML:NO];		
+		NSString *emailBody = [NSString stringWithFormat:@"Found on Domainr:<br/><br/><strong>http://domai.nr/%@</strong>",result.domainName];
+		[picker setMessageBody:emailBody isHTML:YES];		
 		[self presentModalViewController:picker animated:YES];
 		[picker release];
 	}

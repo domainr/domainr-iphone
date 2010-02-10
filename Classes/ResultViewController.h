@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "Reachability.h"
+#import "CJSONDeserializer.h"
 
 @class Result;
 
@@ -8,17 +9,29 @@
 	Result *result;
 	Reachability *internetReach;
 	NetworkStatus status;
-	
-	BOOL tldInfoOpen;	//
-	BOOL toolsOpen;		//
+    
+    NSData					*jsonData;
+	NSURL					*jsonURL;
+	NSMutableData			*receivedData;
+	NSString				*jsonString;
+	NSURLConnection			*theConnection;
+    
+    NSDictionary *info;
+    
+    BOOL loading;
+    
 	BOOL isGoingBack;	// to hide the navbar when returning to search view
 	BOOL isDeeper;		// for a result that is from another result 
+    
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @property (retain) Result *result;
+@property (retain) NSDictionary *info;
 @property BOOL isDeeper;
 
 - (id)initWithResult:(Result*)newResult;
 - (void)displayComposerSheet;
+- (void)setDefaultEmailAddress;
 
 @end
