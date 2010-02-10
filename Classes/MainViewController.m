@@ -1,7 +1,6 @@
 #import "MainViewController.h"
 #import "ResultCell.h"
 #import	"Reachability.h"
-#import "DomainrTableView.h"
 #import "ResultViewController.h"
 
 @implementation MainViewController

@@ -1,11 +1,10 @@
 #import <UIKit/UIKit.h>
 #import "CJSONDeserializer.h"
 
-@class DomainrTableView;
 @class Reachability;
 
 @interface MainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UINavigationBarDelegate> {	
-	IBOutlet DomainrTableView			*myTableView;
+	IBOutlet UITableView                *myTableView;
 	IBOutlet UITableView				*historyTableView;
 	IBOutlet UISearchBar				*mySearchBar;
 	IBOutlet UIActivityIndicatorView	*activityIndicator;
@@ -32,7 +31,7 @@
 	UIAlertView				*alert;
 }
 
-@property (nonatomic, retain) DomainrTableView	*myTableView;
+@property (nonatomic, retain) UITableView       *myTableView;
 @property (nonatomic, retain) UITableView		*historyTableView;
 @property (nonatomic, retain) UISearchBar		*mySearchBar;
 
