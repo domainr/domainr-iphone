@@ -8,7 +8,7 @@
 	@synthesize result, isDeeper, info;
 
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
-		return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+		return YES;//interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 	}
 
 	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {
@@ -267,6 +267,7 @@
 				isGoingBack = NO;
                 
                 if (loading) {
+                    [tableView deselectRowAtIndexPath:indexPath animated:YES];
                     return;
                 }
                 
