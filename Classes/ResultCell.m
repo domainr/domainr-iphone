@@ -64,12 +64,10 @@
 		}
 		
 		UIColor *mainTextColor = nil;
-		UIColor *grayTextColor = nil;
 		UIColor *lightTextColor = nil;
 		
 		if(self.highlighted) {
 			mainTextColor = [UIColor whiteColor];
-			grayTextColor = [UIColor whiteColor];
 			lightTextColor = [UIColor whiteColor];
 		} 
 		else {
@@ -79,7 +77,6 @@
 			else {	
 				mainTextColor = UIColorFromRGB(0x2160AD);
 			}
-			grayTextColor = [UIColor grayColor];
 			lightTextColor = [UIColor lightGrayColor];
 			self.backgroundColor = [UIColor whiteColor];
 		}

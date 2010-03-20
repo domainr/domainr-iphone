@@ -283,6 +283,8 @@
 					newResult.domainName = [NSString stringWithFormat:@"%@",[subStrings objectAtIndex:1]];
 					newResult.registrars = result.registrars;
 					ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:newResult] autorelease];
+                    [newResult release];
+                    
 					resultViewController.isDeeper = YES;
 					[self.navigationController pushViewController:resultViewController animated:YES];
 				}
