@@ -172,7 +172,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Main Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				BA6171A611226CE600137B2D /* Resources */,
@@ -181,6 +181,7 @@
 				BA9D0D2F0FCA4E7100E2B262 /* MainViewController.h */,
 				BA9D0D300FCA4E7100E2B262 /* MainViewController.m */,
 			);
+			name = "Main Controllers";
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -197,8 +198,8 @@
 			children = (
 				BA9D0D370FCA4FC000E2B262 /* Frameworks */,
 				BA754CD1107987370024A629 /* Additions */,
-				080E96DDFE201D6D7F000001 /* Classes */,
-				BA0FCCBC10959E6700593B42 /* History Storage */,
+				080E96DDFE201D6D7F000001 /* Main Controllers */,
+				BA0FCCBC10959E6700593B42 /* History */,
 				BAA03641109035C600221219 /* Result */,
 				BA8F27951092BCD3000CBAF0 /* WebView */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -253,13 +254,13 @@
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
 		};
-		BA0FCCBC10959E6700593B42 /* History Storage */ = {
+		BA0FCCBC10959E6700593B42 /* History */ = {
 			isa = PBXGroup;
 			children = (
 				BA57B9E211226BE200EFE452 /* Storage.h */,
 				BA57B9E311226BE200EFE452 /* Storage.m */,
 			);
-			name = "History Storage";
+			name = History;
 			sourceTree = "<group>";
 		};
 		BA57B95811225EB900EFE452 /* CJSON */ = {

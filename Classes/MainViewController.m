@@ -244,6 +244,11 @@
 			return aSize.height+21;				
 		}
 		else if (tableView == historyTableView) {
+			
+			if (indexPath.section == 1) {
+				return 40;
+			}
+			
 			if(results == nil) return 50;
 			
 			NSString *searchString = [historyArray objectAtIndexA:indexPath.row];
@@ -257,6 +262,9 @@
 	}
 
 	- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
+		if (tableView == historyTableView) {
+			return [historyArray count] > 0 ? 2 : 1;
+		}
 		return 1;
 	}
 
@@ -265,6 +273,10 @@
 			return (results) ? [results count] : 0;
 		}
 		else if (tableView == historyTableView) {
+			
+			if (section == 1) {
+				return 1; //clearall row
+			}
 			return (historyArray) ? [historyArray count] : 0;
 		}
 		return 0;
@@ -278,10 +290,22 @@
 			return cell;
 		}
 		else if (tableView == historyTableView) {
+			
+			if (indexPath.section == 1) {
+				UITableViewCell *cell = (UITableViewCell *)[tableView cellForClass:[UITableViewCell class]];
+				[[cell textLabel] setText:NSLocalizedString(@"Clear History", nil)];
+				[[cell textLabel] setTextAlignment:UITextAlignmentCenter];
+				[[cell textLabel] setFont:[UIFont systemFontOfSize:17]];
+				[[cell textLabel] setTextColor:[UIColor blackColor]];
+				cell.imageView.image = nil;
+				return cell;
+			}
+			
 			UITableViewCell *cell = (UITableViewCell *)[tableView cellForClass:[UITableViewCell class]];
 			[[cell textLabel] setText:[historyArray objectAtIndexA:indexPath.row]];
 			[[cell textLabel] setFont:[UIFont systemFontOfSize:17]];
 			[[cell textLabel] setTextColor:[UIColor darkGrayColor]];
+			[[cell textLabel] setTextAlignment:UITextAlignmentLeft];
 			[[cell textLabel] setLineBreakMode:UILineBreakModeWordWrap];
 			[[cell textLabel] setNumberOfLines:0];
 			cell.imageView.image = [SDImage imageNamed:@"magnifying_glass_15x15.png"];
@@ -298,6 +322,17 @@
 			[self.navigationController pushViewController:resultViewController animated:YES];
 		}
 		else if(tableView == historyTableView) {
+			if (indexPath.section == 1) {
+				[tableView deselectRowAtIndexPath:indexPath animated:YES];
+				UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Clear saerch history?" 
+																 message:@"Your search history will be permanently deleted" 
+																delegate:self 
+													   cancelButtonTitle:@"Cancel" 
+													   otherButtonTitles:@"Clear History", nil] autorelease];
+				[_alert show];
+				return;
+			}
+			
 			mySearchBar.text = [historyArray objectAtIndexA:indexPath.row];
 		}
 	}
@@ -312,24 +347,38 @@
 #pragma mark -
 
 	- (UITableViewCellEditingStyle) tableView:(UITableView*) theTableView editingStyleForRowAtIndexPath:(NSIndexPath*) indexPath; {
+		if (indexPath.section == 1) {
+			return UITableViewCellEditingStyleNone;
+		}
+		
 		return (theTableView == historyTableView) ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
 	}
 
-	- (void) tableView:(UITableView*) theTableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath*) indexPath {
-		if (theTableView == historyTableView) {
-			if (editingStyle == UITableViewCellEditingStyleDelete) {				
-				NSString *searchString = [historyArray objectAtIndex: indexPath.row];
-				[[Storage instance] removeItem:searchString];
-				
-				[historyArray removeObjectAtIndex:indexPath.row];
-				if ([historyArray count] == 0) {
-					[historyTableView reloadData];
-				} else {
-					[historyTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-				}
-			}			
-		}
+- (void) tableView:(UITableView*) theTableView commitEditingStyle:(UITableViewCellEditingStyle) editingStyle forRowAtIndexPath:(NSIndexPath*) indexPath;
+{
+	if (theTableView == historyTableView && indexPath.section == 0) {
+		if (editingStyle == UITableViewCellEditingStyleDelete) {				
+			NSString *searchString = [historyArray objectAtIndex: indexPath.row];
+			[[Storage instance] removeItem:searchString];
+			
+			[historyArray removeObjectAtIndex:indexPath.row];
+			if ([historyArray count] == 0) {
+				[historyTableView reloadData];
+			} else {
+				[historyTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+			}
+		}			
 	}
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+{
+	if (buttonIndex == 1) {
+		[historyArray removeAllObjects];
+		[Storage clearSearchHistory];
+		[historyTableView reloadData];
+	}
+}
 
 #pragma mark -
 

@@ -5,6 +5,7 @@
 @interface Storage : NSObject {}
 
 + (Storage*) instance;
++ (void) clearSearchHistory;
 
 - (void) storeResult:(Result *) result;
 - (void) storeSearch:(NSString *) searchString;
