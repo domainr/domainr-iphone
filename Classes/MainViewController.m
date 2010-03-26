@@ -324,7 +324,7 @@
 		else if(tableView == historyTableView) {
 			if (indexPath.section == 1) {
 				[tableView deselectRowAtIndexPath:indexPath animated:YES];
-				UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Clear saerch history?" 
+				UIAlertView *_alert = [[[UIAlertView alloc] initWithTitle:@"Clear search history?" 
 																 message:@"Your search history will be permanently deleted" 
 																delegate:self 
 													   cancelButtonTitle:@"Cancel" 
