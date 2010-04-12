@@ -2,6 +2,7 @@
 #import "ResultCell.h"
 #import	"Reachability.h"
 #import "ResultViewController.h"
+#import "DMAboutController.h"
 
 @implementation MainViewController
 
@@ -62,6 +63,8 @@
 		[mySearchBar becomeFirstResponder];
 		[self setKeyboardState:YES];
 		[self toggleActivityIndicator:NO];
+		
+		infoButton.frame = CGRectMake(self.view.frame.size.width - 32, 11, 22, 22); 
 		
 		[super viewDidLoad];
 	}
@@ -125,9 +128,11 @@
 
 	- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText; {   // called when text changes (including clear)
 		if(EmptyString(searchText)) {
+			infoButton.hidden = NO;
 			[self showHistory];
 		}
 		else {
+			infoButton.hidden = YES;
 			[historyTableView setHidden:YES];
 			[myTableView setHidden:NO];
 			[self search];			
@@ -277,6 +282,7 @@
 			if (section == 1) {
 				return 1; //clearall row
 			}
+
 			return (historyArray) ? [historyArray count] : 0;
 		}
 		return 0;
@@ -382,15 +388,22 @@
 
 #pragma mark -
 
-	- (void) showHistory; {
-		[self toggleActivityIndicator:NO];
-		[results removeAllObjects];
-		myTableView.hidden = YES;
-		[myTableView reloadData];
-		//historyArray = [[[Storage instance] recentHistory] retain];
-		[historyArray setArray:[[Storage instance] recentHistory]]; 
-		historyTableView.hidden = ([historyArray count] == 0);
-		[historyTableView reloadData];
-	}
+- (void) showHistory; {
+	[self toggleActivityIndicator:NO];
+	[results removeAllObjects];
+	myTableView.hidden = YES;
+	[myTableView reloadData];
+	//historyArray = [[[Storage instance] recentHistory] retain];
+	[historyArray setArray:[[Storage instance] recentHistory]]; 
+	historyTableView.hidden = ([historyArray count] == 0);
+	[historyTableView reloadData];
+}
+
+- (void)showAbout;
+{
+	DMAboutController *aboutController = [[[DMAboutController alloc] initWithNibName:@"DMAboutController" bundle:nil] autorelease];
+	UINavigationController *presenter = [[[UINavigationController alloc] initWithRootViewController:aboutController] autorelease];
+	[self.navigationController presentModalViewController:presenter animated:YES];
+}
 
 @end

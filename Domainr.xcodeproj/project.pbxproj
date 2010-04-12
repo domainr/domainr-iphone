@@ -64,6 +64,8 @@
 		BA9D0EFB0FCA682700E2B262 /* ResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BA9D0EF70FCA682700E2B262 /* ResultCell.m */; };
 		BA9D10F20FCA8DA200E2B262 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = BA9D10F10FCA8DA200E2B262 /* Entitlements.plist */; };
 		BAD5C01A107D9C4000C819F4 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD5C019107D9C4000C819F4 /* Result.m */; };
+		BAE6A0CC11729B2E00886226 /* DMAboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE6A0CA11729B2E00886226 /* DMAboutController.m */; };
+		BAE6A0CD11729B2E00886226 /* DMAboutController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAE6A0CB11729B2E00886226 /* DMAboutController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +154,9 @@
 		BA9D10F10FCA8DA200E2B262 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		BAD5C018107D9C4000C819F4 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Result.h; path = Classes/Result.h; sourceTree = "<group>"; };
 		BAD5C019107D9C4000C819F4 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Result.m; path = Classes/Result.m; sourceTree = "<group>"; };
+		BAE6A0C911729B2E00886226 /* DMAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAboutController.h; sourceTree = "<group>"; };
+		BAE6A0CA11729B2E00886226 /* DMAboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAboutController.m; sourceTree = "<group>"; };
+		BAE6A0CB11729B2E00886226 /* DMAboutController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DMAboutController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +185,8 @@
 				1D3623250D0F684500981E51 /* DomainrAppDelegate.m */,
 				BA9D0D2F0FCA4E7100E2B262 /* MainViewController.h */,
 				BA9D0D300FCA4E7100E2B262 /* MainViewController.m */,
+				BAE6A0C911729B2E00886226 /* DMAboutController.h */,
+				BAE6A0CA11729B2E00886226 /* DMAboutController.m */,
 			);
 			name = "Main Controllers";
 			path = Classes;
@@ -297,6 +304,7 @@
 		BA6171A611226CE600137B2D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BAE6A0CB11729B2E00886226 /* DMAboutController.xib */,
 				BA6171C511226DBB00137B2D /* MainWindow.xib */,
 				BA6171A711226CF500137B2D /* MainViewController.xib */,
 			);
@@ -427,6 +435,7 @@
 				BA6171C611226DBB00137B2D /* MainWindow.xib in Resources */,
 				BA61739411229EEE00137B2D /* wiki_icon.png in Resources */,
 				BA6173B61122A15F00137B2D /* iana_icon.png in Resources */,
+				BAE6A0CD11729B2E00886226 /* DMAboutController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +472,7 @@
 				BA6171A311226CCF00137B2D /* WebViewController.m in Sources */,
 				BA6171CB11226DD500137B2D /* main.m in Sources */,
 				BA6172EE11228B9400137B2D /* RegistrarSelectorViewController.m in Sources */,
+				BAE6A0CC11729B2E00886226 /* DMAboutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

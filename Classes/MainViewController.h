@@ -9,6 +9,7 @@
 	IBOutlet UISearchBar				*mySearchBar;
 	IBOutlet UIActivityIndicatorView	*activityIndicator;
 	IBOutlet UIView						*whiteBgView;
+	IBOutlet UIButton					*infoButton;
 	
 	NSData					*jsonData;
 	NSURL					*jsonURL;
@@ -47,5 +48,7 @@
 - (BOOL) networkAvailable;
 
 - (void) showHistory;
+
+- (IBAction)showAbout;
 
 @end
