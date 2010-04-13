@@ -15,6 +15,8 @@
 		Release(mySearchBar);
 		Release(activityIndicator);
 		Release(internetReach);
+		Release(historyArray);
+		Release(results);
 		[super dealloc];
 	}
 
@@ -156,7 +158,6 @@
 		[self setKeyboardState:NO];
 		if(![self networkAvailable]) return;
 		
-//
 		[[Storage instance] storeSearch:searchBar.text]; 
 		
 		[self search];
