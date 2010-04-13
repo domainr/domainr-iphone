@@ -16,6 +16,7 @@
 	}
 
 	- (void)dealloc {
+		Release(info);
 		Release(result);
 		[super dealloc];
 	}

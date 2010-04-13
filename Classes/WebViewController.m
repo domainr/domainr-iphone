@@ -12,7 +12,6 @@
 	Release(toolbar);
 	Release(backButton);
 	Release(forwardButton);
-	
 	[super dealloc];
 }
 

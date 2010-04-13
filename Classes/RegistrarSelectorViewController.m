@@ -85,6 +85,7 @@
 
 
 - (void)dealloc {
+	Release(result);
     [super dealloc];
 }
 
