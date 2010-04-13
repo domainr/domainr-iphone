@@ -66,24 +66,37 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
     // Return the number of sections.
-	return 2;
+	return 3;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
 {
 	if (section == 0) {
-		return @"Brought to you by...";
+		return @"About Domainr";
 	}
 	if (section == 1) {
-		return @"Follow us on Twitter";
+		return @"Brought to you by...";
+	}
+	return nil;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
+{
+	if (section == 2) {
+		return @"© nb.io";
 	}
 	return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    // Return the number of rows in the section.
-    return 2;
+	if (section == 0) {
+		return 3;
+	}
+	if (section == 1) {
+		return 4;
+	}
+	return 0;
 }
 
 
@@ -94,67 +107,87 @@
     
 	if (indexPath.section == 0) {
 		if (indexPath.row == 0) {
-			cell.textLabel.text = @"@sahil";
-			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+			cell.textLabel.text = @"Twitter";
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 		}
 		if (indexPath.row == 1) {
-			cell.textLabel.text = @"@domainr";			
+			cell.textLabel.text = @"Blog";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		if (indexPath.row == 2) {
+			cell.textLabel.text = @"Contact us";			
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 	}
 	if (indexPath.section == 1) {
-		
+		if (indexPath.row == 0) {
+			cell.textLabel.text = @"@sahil";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		if (indexPath.row == 1) {
+			cell.textLabel.text = @"@case";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		if (indexPath.row == 2) {
+			cell.textLabel.text = @"@rr";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
+		if (indexPath.row == 3) {
+			cell.textLabel.text = @"@ceedub";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
 	}
 	
     return cell;
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:YES];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			WebViewController *webView = [[[WebViewController alloc] initWithAddress:@"http://twitter.com/domainr" result:nil] autorelease];			
+			[self.navigationController pushViewController:webView animated:YES];
+		}
+		if (indexPath.row == 1) {
+			WebViewController *webView = [[[WebViewController alloc] initWithAddress:@"http://blog.domai.nr/" result:nil] autorelease];			
+			[self.navigationController pushViewController:webView animated:YES];
+		}
+		if (indexPath.row == 2) {
+			[self displayComposerSheet];
+			[tableView deselectRowAtIndexPath:indexPath animated:YES];
+			return;
+		}
+	}
+	if (indexPath.section == 1) {
+		
+		NSString *username = nil;
+		if (indexPath.row == 0) {
+			username = @"sahil";
+		}
+		if (indexPath.row == 1) {
+			username = @"case";
+		}
+		if (indexPath.row == 2) {
+			username = @"rr";
+		}
+		if (indexPath.row == 3) {
+			username = @"ceedub";
+		}
+		
+		WebViewController *webView = [[[WebViewController alloc] initWithAddress:[NSString stringWithFormat:@"http://twitter.com/%@", username] result:nil] autorelease];			
+		[self.navigationController pushViewController:webView animated:YES];
 
+	}
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath;
+{
+	if (indexPath.section == 0 && indexPath.row == 0) {
+		WebViewController *webView = [[[WebViewController alloc] initWithAddress:@"http://search.twitter.com/search?q=domainr" result:nil] autorelease];			
+		[self.navigationController pushViewController:webView animated:YES];
+	}
 }
 
 
@@ -176,6 +209,23 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+- (void)displayComposerSheet; {
+	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+	picker.mailComposeDelegate = self;
+	[picker setToRecipients:[NSArray arrayWithObject:@"ping@domai.nr"]];
+	[picker setSubject:SDLocalizedStringWithFormat(@"Hey Domainr Guys!")];
+	
+	NSString *emailBody = [NSString stringWithFormat:@""];
+	[picker setMessageBody:emailBody isHTML:YES];		
+	[self presentModalViewController:picker animated:YES];
+	[picker release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error; {
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 

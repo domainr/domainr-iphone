@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface DMAboutController : UITableViewController {
+@interface DMAboutController : UITableViewController <MFMailComposeViewControllerDelegate> {
 	
 }
+
+- (void)displayComposerSheet;
 
 @end
