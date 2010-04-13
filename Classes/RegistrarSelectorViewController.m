@@ -65,7 +65,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSDictionary *registrar = [result.registrars objectAtIndexA:indexPath.row];
-    WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:[registrar objectForKey:@"register_url"]] autorelease];
+	//	WebViewController *webViewController = [[[WebViewController alloc] initWithResult:result] autorelease];
+    WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:[registrar objectForKey:@"register_url"] result:result] autorelease];
 
     [self.navigationController pushViewController:webViewController animated:YES];
 }

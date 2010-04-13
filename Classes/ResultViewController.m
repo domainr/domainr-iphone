@@ -273,7 +273,7 @@
                 
 				if(result.imageType == kTaken) {
 					NSString *buyURL = [NSString stringWithFormat:@"http://domai.nr/%@/buy",result.domainName];
-					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:buyURL] autorelease];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:buyURL  result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
 				else if([result isResolvable]) {
@@ -290,12 +290,12 @@
 				}
 				else if([result isRegistrable]) {
 					NSString *apiRegisterURL = [NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName];
-					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL] autorelease];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
 				else {
 					NSString *tldURL = [NSString stringWithFormat:@"http://domai.nr/about/tlds",result.domainName];
-					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:tldURL] autorelease];
+					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:tldURL  result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}				
 			}
@@ -314,13 +314,13 @@
             if (indexPath.row == 0) {
                 //WIKI
                 NSString *wikiUrl = [tldinfo objectForKey:@"wikipedia_url"];
-                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wikiUrl] autorelease];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wikiUrl  result:result] autorelease];
                 [self.navigationController pushViewController:webViewController animated:YES];
             }
             else if (indexPath.row == 1) {
                 //IANA
                 NSString *ianaUrl = [tldinfo objectForKey:@"iana_url"];
-                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:ianaUrl] autorelease];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:ianaUrl  result:result] autorelease];
                 [self.navigationController pushViewController:webViewController animated:YES];                
             }
         }
@@ -330,13 +330,13 @@
             if([result isResolvable] && indexPath.row == 0) {                
                 //WWW
                 NSString *wwwUrl = [info objectForKey:@"www_url"];
-                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wwwUrl] autorelease];
+                WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:wwwUrl result:result] autorelease];
                 [self.navigationController pushViewController:webViewController animated:YES];
 			}
 			else if((![result isResolvable] && indexPath.row == 0) || indexPath.row == 1) {
                 //WHOIS
                 NSString *whoIsURL = [info objectForKey:@"whois_url"];
-				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:whoIsURL] autorelease];
+				WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:whoIsURL result:result] autorelease];
 				[self.navigationController pushViewController:webViewController animated:YES];				
 			}
 		}

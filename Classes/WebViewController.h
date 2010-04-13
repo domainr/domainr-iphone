@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
+#import "Result.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate> {
+@interface WebViewController : UIViewController <UIWebViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
 	IBOutlet UIToolbar			*toolbar;
 	IBOutlet UIWebView			*webView;
 	IBOutlet UIBarButtonItem	*backButton;
@@ -16,9 +17,10 @@
 	
 	NSString					*loadAddress;
 	NSMutableArray				*toolBarItems;
+	Result						*_result;
 }
 
-- (id) initWithAddress: (NSString*) theAddress;
+- (id) initWithAddress: (NSString*) theAddress result:(Result *)result;
 
 @property (readonly) UIWebView *webView;
 
@@ -26,5 +28,6 @@
 - (void) goBack: (id) sender;
 - (void) action: (id) sender;
 
+- (void)displayComposerSheet;
 
 @end
