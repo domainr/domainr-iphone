@@ -154,22 +154,23 @@
                 
 				if(result.imageType == kAvailable) {
 					statusLabel.text = @" This domain is available. ";
-					statusLabel.textColor = UIColorFromRGB(0x23b000);
-                    statusLabel.backgroundColor = UIColorFromRGB(0xffeeee);
+					statusLabel.textColor = UIColorFromRGB(0x4da718);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xf4f6f3);
 				}
 				else if(result.imageType == kUnavailable) {
 					statusLabel.text = @" This domain is not available. ";
-					statusLabel.textColor = UIColorFromRGB(0xff4d00);
-                    statusLabel.backgroundColor = UIColorFromRGB(0xffeee6);
+					statusLabel.textColor = UIColorFromRGB(0xf05f31);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xfdeee7);
 				}
 				else if(result.imageType == kMaybe) {
 					statusLabel.text = @" This domain might be available. ";
-					statusLabel.textColor = UIColorFromRGB(0xd1ad69) ;
+					statusLabel.textColor = UIColorFromRGB(0x4da718);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xf4f6f3);
 				}
 				else if(result.imageType == kTaken) {
 					statusLabel.text = @" This domain is taken. ";
                     statusLabel.textColor = [UIColor blackColor];
-                    statusLabel.backgroundColor = UIColorFromRGB(0xffeeee);
+                    statusLabel.backgroundColor = UIColorFromRGB(0xf4f6f3);
                 }
 				else if(result.imageType == kTLD) {
 					statusLabel.text = @" Top-Level Domain ";
