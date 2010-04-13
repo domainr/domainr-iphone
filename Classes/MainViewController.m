@@ -64,8 +64,6 @@
 		[self setKeyboardState:YES];
 		[self toggleActivityIndicator:NO];
 		
-		infoButton.frame = CGRectMake(self.view.frame.size.width - 32, 11, 22, 22); 
-		
 		[super viewDidLoad];
 	}
 

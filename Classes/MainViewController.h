@@ -9,7 +9,7 @@
 	IBOutlet UISearchBar				*mySearchBar;
 	IBOutlet UIActivityIndicatorView	*activityIndicator;
 	IBOutlet UIView						*whiteBgView;
-	IBOutlet UIButton					*infoButton;
+	IBOutlet UIView						*infoButton;
 	
 	NSData					*jsonData;
 	NSURL					*jsonURL;

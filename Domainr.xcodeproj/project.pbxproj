@@ -501,6 +501,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -510,6 +512,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Domainr;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 			};
 			name = Release;
 		};
@@ -524,7 +527,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "780328BA-F1B2-4075-822D-2D57711574EC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 				SDKROOT = iphoneos3.0;
 			};
 			name = AdHoc;
@@ -566,13 +569,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sahil Desai";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
 				PREBINDING = NO;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7F9377B-20CF-438B-A039-B82D5FD71D19";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
