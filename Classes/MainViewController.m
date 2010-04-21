@@ -171,7 +171,7 @@
 		
 		NSString *urlSearchString = [NSString stringWithFormat: @"http://domai.nr/api/json/search?q=%@", searchText];
 		
-		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [urlSearchString escapedString]]
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlSearchString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
 															  timeoutInterval: 60.0];
 		[theRequest setHTTPMethod:@"GET"];

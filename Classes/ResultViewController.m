@@ -8,7 +8,7 @@
 	@synthesize result, isDeeper, info;
 
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
-		return YES;//interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+		return YES;
 	}
 
 	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {
@@ -16,7 +16,9 @@
 	}
 
 	- (void)dealloc {
-		Release(info);
+		if (info) {
+			Release(info);			
+		}
 		Release(result);
 		[super dealloc];
 	}
@@ -48,7 +50,7 @@
         
         NSString *urlInfoString = [NSString stringWithFormat: @"http://domai.nr/api/json/info?q=%@", result.domainName];
 		
-		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [urlInfoString escapedString]]
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlInfoString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
 															  timeoutInterval: 60.0];
 		[theRequest setHTTPMethod:@"GET"];
@@ -291,7 +293,7 @@
 					[self.navigationController pushViewController:resultViewController animated:YES];
 				}
 				else if([result isRegistrable]) {
-					NSString *apiRegisterURL = [NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName];
+					NSString *apiRegisterURL = [[NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName]  stringByAppendingString:@"&client_id=iphone"];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
