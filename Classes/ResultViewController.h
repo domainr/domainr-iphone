@@ -27,7 +27,6 @@
 }
 
 @property (retain) Result *result;
-@property (retain) NSDictionary *info;
 @property BOOL isDeeper;
 
 - (id)initWithResult:(Result*)newResult;

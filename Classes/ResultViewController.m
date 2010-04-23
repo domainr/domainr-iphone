@@ -5,7 +5,7 @@
 
 @implementation ResultViewController
 
-	@synthesize result, isDeeper, info;
+	@synthesize result, isDeeper;
 
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
 		return YES;
@@ -16,9 +16,6 @@
 	}
 
 	- (void)dealloc {
-		if (info) {
-			Release(info);			
-		}
 		Release(result);
 		[super dealloc];
 	}
@@ -27,7 +24,7 @@
 		if (self = [super initWithStyle:UITableViewStyleGrouped]) {
             self.result = newResult;
             self.title = result.imageType == kTLD ? [NSString stringWithFormat:@".%@", newResult.domainName] : newResult.domainName;
-        }
+		}
 		return self;
 	}
 
@@ -365,9 +362,7 @@
 
     - (void)connectionDidFinishLoading:(NSURLConnection *)connection; {
         NSError *error = nil;
-        
-//        NSLog(@"%@",[NSString stringWithData:receivedData]);
-        
+		
         info = [[[CJSONDeserializer deserializer] deserializeAsDictionary:receivedData error:&error] retain];
         
         result.registrars = [info objectForKey:@"registrars"];

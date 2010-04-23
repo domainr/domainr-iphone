@@ -10,28 +10,28 @@
 	Release(loadAddress);
 	Release(webView);
 	Release(toolbar);
-	Release(backButton);
-	Release(forwardButton);
 	[super dealloc];
 }
 
 - (id) initWithAddress: (NSString*) theAddress result:(Result *)result; {
 	self = [self initWithNibName: @"WebViewController" bundle: nil];
-	loadAddress = [theAddress retain];		
-	_result = result;
+	loadAddress = theAddress;		
+	_result = [result retain];
 	return self;
 }
 
 - (void)viewWillAppear:(BOOL)animated; {
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
-	[webView loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: loadAddress]]];
-	addressField.text = loadAddress;
 	[super viewWillAppear:animated];
 }
 
 - (void)viewDidLoad; {
 	self.navigationItem.titleView = titleAndAddressView;
 	forwardButton.enabled = NO;
+	
+	[webView loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: loadAddress]]];
+	addressField.text = loadAddress;
+
 	[super viewDidLoad];
 }
 

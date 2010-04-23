@@ -44,11 +44,10 @@
 	}
 
 	- (void) setResult: (Result*) theResult; {
-		result.resultCell = nil;
-		Release(result);
+		[result release];
 		result = [theResult retain];
+
 		result.resultCell = self;
-		
 		[self.mainContentView setNeedsDisplay];
 	}
 
@@ -94,10 +93,6 @@
 					  lineBreakMode:UILineBreakModeTailTruncation];			
 		}
 		
-//		[grayTextColor set];
-//		[result.availability drawInRect:CGRectMake(30, rect.size.height - 25, rect.size.width - 50, 20) 
-//							   withFont:availabilityFont
-//						  lineBreakMode:UILineBreakModeWordWrap];
 		
 		if(result.imageType == kAvailable)
 		 	[[UIImage imageNamed:@"available.png"] drawInRect:CGRectMake(11, 16, 9, 9) 
@@ -107,10 +102,6 @@
 		 	[[UIImage imageNamed:@"maybe.png"] drawInRect:CGRectMake(11, 16, 9, 9)
 												blendMode:kCGBlendModeNormal 
 													alpha:1.0];
-//		else if(result.imageType == kTLD)
-//			[[UIImage imageNamed:@"tld.png"] drawInRect:CGRectMake(11, 16, 9, 9)
-//											  blendMode:kCGBlendModeNormal
-//												  alpha:1.0];
 	}
 
 @end
