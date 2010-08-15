@@ -10,10 +10,7 @@
 	@synthesize mySearchBar;
 
 	- (void)dealloc; {
-		Release(myTableView);
-		Release(historyTableView);
-		Release(mySearchBar);
-		Release(activityIndicator);
+		
 		Release(internetReach);
 		Release(historyArray);
 		Release(results);
@@ -23,7 +20,7 @@
 #pragma mark -
 
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
-		return YES;//interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+		return YES;
 	}
 
 	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {

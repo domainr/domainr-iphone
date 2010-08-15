@@ -16,7 +16,8 @@
 	}
 
 	- (void)dealloc {
-		Release(result);
+		self.result = nil;
+
 		[super dealloc];
 	}
 
@@ -27,16 +28,23 @@
 		}
 		return self;
 	}
+	- (void)viewDidAppear:(BOOL)animated {
+		[super viewDidAppear:animated];
+		
+		
+	}
 
 	- (void)viewWillAppear:(BOOL)animated; {
+		[super viewWillAppear:animated];
+
 		isGoingBack = YES;
 		[self.navigationController setNavigationBarHidden:NO animated:YES];
-		[super viewWillAppear:animated];
 	}
 
 	- (void)viewWillDisappear:(BOOL)animated; {
-		if(isGoingBack && !isDeeper) [self.navigationController setNavigationBarHidden:YES animated:YES];
 		[super viewWillDisappear:animated];
+
+		if(isGoingBack && !isDeeper) [self.navigationController setNavigationBarHidden:YES animated:YES];
 	}
 
 	- (void)viewDidLoad; {
@@ -134,6 +142,7 @@
 
 		if(indexPath.section == kRegisterSection) {
 			if (indexPath.row == 0) {
+				
 				[[cell textLabel] setText:@""];
 				[cell setAccessoryType:UITableViewCellAccessoryNone];
 				CGRect rect = [[UIScreen mainScreen] bounds];
@@ -174,7 +183,6 @@
                 }
 				else if(result.imageType == kTLD) {
 					statusLabel.text = @" Top-Level Domain ";
-//                  statusLabel.textColor = UIColorFromRGB(0xf5f7f4) ;				
                     statusLabel.textColor = [UIColor whiteColor];
                     statusLabel.backgroundColor = UIColorFromRGB(0x7a7d79);
                     statusLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -184,7 +192,6 @@
 				else if(result.imageType == kSubdomain) {
 					NSArray *subStrings = [result.domainName componentsSeparatedByString:@"."];
 					statusLabel.text = [NSString stringWithFormat:@" Subdomain of .%@ ", [subStrings objectAtIndex:1]];
-//					statusLabel.textColor = UIColorFromRGB(0xf5f7f4);
                     statusLabel.textColor = [UIColor whiteColor];
                     statusLabel.backgroundColor = UIColorFromRGB(0x7a7d79);
                     statusLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -228,7 +235,6 @@
 		else if(indexPath.section == kMailSection) {
 			if(indexPath.row == 0) {
 				[[cell textLabel] setText:SDLocalizedString(@"Save (via Email)")];
-                //cell.imageView.image = [SDImage imageNamed:@"at_symbol.png"];
 			}
 		}
 		else if(indexPath.section == kTLDSection) {
@@ -342,7 +348,7 @@
 			}
 		}
 		if(!(indexPath.section == kMailSection && indexPath.row == 0)) {
-		//	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 		}
 	}
 

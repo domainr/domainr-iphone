@@ -5,10 +5,12 @@
 	@synthesize domainName, availability, path, registerURL, registrars, resultCell, imageType;
 
 	- (void)dealloc; {
-		Release(domainName);
-		Release(availability);
-		Release(registrars);
-		Release(registerURL);
+		self.domainName = nil;
+		self.availability = nil;
+		self.registrars = nil;
+		self.registerURL = nil;
+		self.resultCell = nil;
+
 		[super dealloc];
 	}
 
