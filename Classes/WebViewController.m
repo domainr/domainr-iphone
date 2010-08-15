@@ -115,7 +115,7 @@
 }
 
 - (void) action: (id) sender; {
-	UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle: nil delegate: self cancelButtonTitle: SDLocalizedString(@"Cancel") destructiveButtonTitle: nil otherButtonTitles: NSLocalizedString(@"Open in Safari", nil), NSLocalizedString(@"Email link to this page", nil), nil] autorelease];
+	UIActionSheet* sheet = [[[UIActionSheet alloc] initWithTitle: nil delegate: self cancelButtonTitle: SDLocalizedString(@"Cancel") destructiveButtonTitle: nil otherButtonTitles: NSLocalizedString(@"Open in Safari", nil), NSLocalizedString(@"Email Link to this Page", nil), nil] autorelease];
 	[sheet showInView: [webView window]];
 }
 

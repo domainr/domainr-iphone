@@ -115,7 +115,7 @@
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 		if (indexPath.row == 2) {
-			cell.textLabel.text = @"Contact us";			
+			cell.textLabel.text = @"Contact Us";			
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
 	}
@@ -216,7 +216,7 @@
 	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 	picker.mailComposeDelegate = self;
 	[picker setToRecipients:[NSArray arrayWithObject:@"ping@domai.nr"]];
-	[picker setSubject:SDLocalizedStringWithFormat(@"Hey Domainr Guys!")];
+	[picker setSubject:NSLocalizedString(@"Hey Domainr Guys!", @"")];
 	
 	NSString *emailBody = [NSString stringWithFormat:@""];
 	[picker setMessageBody:emailBody isHTML:YES];		
