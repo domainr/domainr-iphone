@@ -6,16 +6,21 @@
 @synthesize webView;
 
 - (void)dealloc; {
-	Release(_result);
-	Release(loadAddress);
-	Release(webView);
-	Release(toolbar);
+	
+	[_result release];
+	[loadAddress release];
+	[toolbar release];
+    
+	webView.delegate = nil;
+	[webView stopLoading];
+	[webView release];
+	
 	[super dealloc];
 }
 
 - (id) initWithAddress: (NSString*) theAddress result:(Result *)result; {
 	self = [self initWithNibName: @"WebViewController" bundle: nil];
-	loadAddress = theAddress;		
+	loadAddress = [theAddress retain];
 	_result = [result retain];
 	return self;
 }
@@ -25,17 +30,28 @@
 	[super viewWillAppear:animated];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+	
+    if (webView.loading)
+    {
+        [webView stopLoading];
+    }
+}
+
 - (void)viewDidLoad; {
+		
 	self.navigationItem.titleView = titleAndAddressView;
 	forwardButton.enabled = NO;
 	
-	[webView loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: loadAddress]]];
-	addressField.text = loadAddress;
+	NSURL *url = [NSURL URLWithString:loadAddress];
+	NSURLRequest *request = [NSURLRequest requestWithURL:url];
+	[webView loadRequest:request];
+	
+	[addressField setText:loadAddress];
 
 	[super viewDidLoad];
-}
-
-- (void)viewDidUnload; {
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation; {
@@ -53,18 +69,16 @@
 	[webView reload];
 }
 
-- (BOOL) webView: (UIWebView*) theWebView shouldStartLoadWithRequest: (NSURLRequest*) request navigationType: (UIWebViewNavigationType) navigationType; {
-	return YES;
-}
-
 - (void) webViewDidStartLoad: (UIWebView*) theWebView; {
-	[self updateButtons];		
+	
+	[self updateButtons];
 	
 	toolBarItems = [toolbar.items mutableCopy];
 	[toolBarItems removeObjectAtIndex:4];
 	[toolBarItems insertObject:fixedSpace atIndex:4];
 	[toolbar setItems:toolBarItems];
-	Release(toolBarItems);
+	[toolBarItems release];
+
 	spinner.hidden = NO;
 	[spinner startAnimating];
 }
@@ -75,15 +89,16 @@
 	[toolBarItems removeObjectAtIndex:4];
 	[toolBarItems insertObject:reloadButton atIndex:4];
 	[toolbar setItems:toolBarItems];
-	Release(toolBarItems);
+	[toolBarItems release];
+
 	spinner.hidden = YES;
 	
 	titleField.text = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-	if (EmptyString(titleField.text))
+	if (!titleField.text)
 		titleField.text = SDLocalizedString(@"Untitled");
 	
 	if (titleField.alpha == 0) {
-		[UIView beginAnimations: @"" context: nil];
+		[UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationDuration: 0.4];
 		CGRect frame;
 		
