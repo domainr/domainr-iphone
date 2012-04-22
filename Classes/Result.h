@@ -14,10 +14,10 @@
 }
 
 @property (retain) NSString	*domainName;
-@property (retain) NSString	*availability;
+@property (nonatomic, retain) NSString	*availability;
 @property (retain) NSString *path;
 @property (retain) NSString *registerURL;
-@property (retain) NSMutableArray *registrars;
+@property (nonatomic, retain) NSMutableArray *registrars;
 @property int imageType;
 
 @property (assign) ResultCell *resultCell;
