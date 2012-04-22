@@ -6,7 +6,7 @@
 	ResultContentView *mainContentView;
 }
 
-@property (retain) Result *result;
+@property (nonatomic, retain) Result *result;
 @property (readonly) ResultContentView *mainContentView;
 
 @end

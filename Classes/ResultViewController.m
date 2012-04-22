@@ -85,10 +85,10 @@
 
 	- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section; {
 		if (section == kRegisterSection) {
-			return 90.0;
+			return 20.0;
 		}
         if (section == kToolSection || section == kTLDSection) {
-            return 30;
+            return 20;
         }
 		return 0;
 	}
