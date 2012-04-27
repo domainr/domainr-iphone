@@ -1,12 +1,14 @@
 #import "DomainrAppDelegate.h"
 #import "MainViewController.h"
+#import "FlurryAnalytics.h"
 
 @implementation DomainrAppDelegate
 
 	@synthesize window;
 	@synthesize navigationController;
 
-	- (void)applicationDidFinishLaunching:(UIApplication *)application; {	
+	- (void)applicationDidFinishLaunching:(UIApplication *)application; {
+        [FlurryAnalytics startSession:@"XXXXXXXXXXXXXXXXXXXX"];
 		MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
 		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
 		self.navigationController = navController;
