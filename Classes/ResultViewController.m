@@ -2,6 +2,7 @@
 #import "RegistrarSelectorViewController.h"
 #import "Result.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FlurryAnalytics.h"
 
 @implementation ResultViewController
 
@@ -49,6 +50,7 @@
 
 	- (void)viewDidLoad; {
         activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [FlurryAnalytics logEvent:@"Search Result tap"];
         [activityIndicator setFrame:CGRectMake(145, 220, 30, 30)];
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
@@ -296,7 +298,8 @@
 					[self.navigationController pushViewController:resultViewController animated:YES];
 				}
 				else if([result isRegistrable]) {
-					NSString *apiRegisterURL = [[NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName]  stringByAppendingString:@"&client_id=iphone"];
+					[FlurryAnalytics logEvent:@"Register tap"];
+                    NSString *apiRegisterURL = [[NSString stringWithFormat:@"http://domai.nr/api/register?domain=%@",result.domainName]  stringByAppendingString:@"&client_id=iphone"];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
@@ -389,7 +392,7 @@
     }
 
 	- (void)displayComposerSheet; {
-		isGoingBack = NO; 
+        isGoingBack = NO; 
 		MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 		picker.mailComposeDelegate = self;
 		[picker setToRecipients:nil];
@@ -402,7 +405,10 @@
 	}
 
 	- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error; {
-		[self becomeFirstResponder];
+		if (result == MFMailComposeResultSent) {
+            [FlurryAnalytics logEvent:@"Shared via Email"];
+        }
+        [self becomeFirstResponder];
 		isGoingBack = YES; 
 		[self dismissModalViewControllerAnimated:YES];
 	}
