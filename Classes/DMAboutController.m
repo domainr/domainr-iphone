@@ -215,7 +215,7 @@
 - (void)displayComposerSheet; {
 	MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
 	picker.mailComposeDelegate = self;
-	[picker setToRecipients:[NSArray arrayWithObject:@"ping@domai.nr"]];
+	[picker setToRecipients:[NSArray arrayWithObject:@"ping+ios@domai.nr"]];
 	[picker setSubject:NSLocalizedString(@"Hey Domainr Guys!", @"")];
 	
 	NSString *emailBody = [NSString stringWithFormat:@""];
