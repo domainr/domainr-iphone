@@ -21,7 +21,8 @@ void uncaughtExceptionHandler(NSException*exception) {
 		Release(mainViewController);
 		
 		[self.navigationController setNavigationBarHidden:YES];
-		[window addSubview:[self.navigationController view]];
+        [window addSubview:[self.navigationController view]];
+//        [self.window setRootViewController:self.navigationController];
 		[window makeKeyAndVisible];
 	}
 
