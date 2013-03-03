@@ -12,6 +12,13 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		48530D5E154B37490066915C /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48530D5D154B37490066915C /* libFlurryAnalytics.a */; };
 		B3388F53152BD564009649FB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3388F52152BD564009649FB /* icon@2x.png */; };
+		B343752E16D18FF200F19105 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752916D18FF200F19105 /* Default@2x.png */; };
+		B343752F16D18FF200F19105 /* iana_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752A16D18FF200F19105 /* iana_icon@2x.png */; };
+		B343753016D18FF200F19105 /* magnifying_glass_15x15@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752B16D18FF200F19105 /* magnifying_glass_15x15@2x.png */; };
+		B343753116D18FF200F19105 /* magnifying_glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752C16D18FF200F19105 /* magnifying_glass@2x.png */; };
+		B343753216D18FF200F19105 /* wiki_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752D16D18FF200F19105 /* wiki_icon@2x.png */; };
+		B343753416D1902600F19105 /* web@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343753316D1902600F19105 /* web@2x.png */; };
+		B3E7CD9016D1799200987200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E7CD8E16D1799200987200 /* Default-568h@2x.png */; };
 		BA0FCD361095A87F00593B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		BA577530108EDAAA00C6828C /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA57752E108EDAAA00C6828C /* ResultViewController.m */; };
 		BA57B97011226AC400EFE452 /* NSMutableArray+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = BA57B95F11226AC400EFE452 /* NSMutableArray+Extensions.m */; };
@@ -76,6 +83,13 @@
 		48530D5D154B37490066915C /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B3388F52152BD564009649FB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icon@2x.png"; sourceTree = "<group>"; };
+		B343752916D18FF200F19105 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		B343752A16D18FF200F19105 /* iana_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "iana_icon@2x.png"; path = "Resources/iana_icon@2x.png"; sourceTree = "<group>"; };
+		B343752B16D18FF200F19105 /* magnifying_glass_15x15@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass_15x15@2x.png"; path = "Resources/magnifying_glass_15x15@2x.png"; sourceTree = "<group>"; };
+		B343752C16D18FF200F19105 /* magnifying_glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass@2x.png"; path = "Resources/magnifying_glass@2x.png"; sourceTree = "<group>"; };
+		B343752D16D18FF200F19105 /* wiki_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wiki_icon@2x.png"; path = "Resources/wiki_icon@2x.png"; sourceTree = "<group>"; };
+		B343753316D1902600F19105 /* web@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web@2x.png"; path = "Resources/web@2x.png"; sourceTree = "<group>"; };
+		B3E7CD8E16D1799200987200 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BA57752D108EDAAA00C6828C /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultViewController.h; path = Classes/ResultViewController.h; sourceTree = "<group>"; };
 		BA57752E108EDAAA00C6828C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultViewController.m; path = Classes/ResultViewController.m; sourceTree = "<group>"; };
 		BA57B95E11226AC400EFE452 /* NSMutableArray+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableArray+Extensions.h"; path = "Additions/NSMutableArray+Extensions.h"; sourceTree = "<group>"; };
@@ -218,9 +232,16 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B3E7CD8E16D1799200987200 /* Default-568h@2x.png */,
+				B343753316D1902600F19105 /* web@2x.png */,
 				B3388F52152BD564009649FB /* icon@2x.png */,
 				BA57B97B11226B7700EFE452 /* Default.png */,
 				BA57B98111226B7700EFE452 /* available.png */,
+				B343752916D18FF200F19105 /* Default@2x.png */,
+				B343752A16D18FF200F19105 /* iana_icon@2x.png */,
+				B343752B16D18FF200F19105 /* magnifying_glass_15x15@2x.png */,
+				B343752C16D18FF200F19105 /* magnifying_glass@2x.png */,
+				B343752D16D18FF200F19105 /* wiki_icon@2x.png */,
 				BA57B98211226B7700EFE452 /* Back.png */,
 				BA57B98511226B7700EFE452 /* Forward.png */,
 				BA6173B51122A15F00137B2D /* iana_icon.png */,
@@ -441,6 +462,13 @@
 				BA6173B61122A15F00137B2D /* iana_icon.png in Resources */,
 				BAE6A0CD11729B2E00886226 /* DMAboutController.xib in Resources */,
 				B3388F53152BD564009649FB /* icon@2x.png in Resources */,
+				B3E7CD9016D1799200987200 /* Default-568h@2x.png in Resources */,
+				B343752E16D18FF200F19105 /* Default@2x.png in Resources */,
+				B343752F16D18FF200F19105 /* iana_icon@2x.png in Resources */,
+				B343753016D18FF200F19105 /* magnifying_glass_15x15@2x.png in Resources */,
+				B343753116D18FF200F19105 /* magnifying_glass@2x.png in Resources */,
+				B343753216D18FF200F19105 /* wiki_icon@2x.png in Resources */,
+				B343753416D1902600F19105 /* web@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +561,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 				SDKROOT = iphoneos;
 			};
@@ -564,6 +593,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 				SDKROOT = iphoneos;
 			};
@@ -598,6 +628,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A7F9377B-20CF-438B-A039-B82D5FD71D19";
@@ -614,6 +645,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
 				SDKROOT = iphoneos;
 			};

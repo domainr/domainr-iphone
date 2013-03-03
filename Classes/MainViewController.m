@@ -4,6 +4,7 @@
 #import "ResultViewController.h"
 #import "DMAboutController.h"
 #import "FlurryAnalytics.h"
+#import "UIDevice+Screen.h"
 
 @implementation MainViewController
 
@@ -24,6 +25,7 @@
 		return YES;
 	}
 
+
 	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {
 		if(keyboardHidden) {
 			[self setKeyboardState:NO];
@@ -39,8 +41,7 @@
 
 	- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil; {
 		if(self = [super initWithNibName:nibNameOrNil bundle: nil]) {
-			//customize
-		}		
+		}
 		return self;
 	}
 
@@ -53,7 +54,16 @@
 		internetReach = [[Reachability reachabilityForInternetConnection] retain];
 		[internetReach startNotifer];
 		
+    
+        self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
+        UIScreen *mainScreen = [UIScreen mainScreen];
+        CGFloat scale = ([mainScreen respondsToSelector:@selector(scale)] ? mainScreen.scale : 1.0f);
+        CGFloat pixelHeight = (CGRectGetHeight(mainScreen.bounds) * scale);
+        [[self view] setClipsToBounds:YES];
+        
 		// check for history
+
 		historyArray = [[[Storage instance] recentHistory] retain];
 		[historyTableView setHidden: [historyArray count] ? NO : YES];
 		
@@ -63,6 +73,7 @@
 		[mySearchBar becomeFirstResponder];
 		[self setKeyboardState:YES];
 		[self toggleActivityIndicator:NO];
+
 		
 		[super viewDidLoad];
 	}
