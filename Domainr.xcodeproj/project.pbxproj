@@ -516,6 +516,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -528,6 +530,8 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = Domainr;
+				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
 			};
 			name = Debug;
 		};
@@ -536,7 +540,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -547,7 +552,8 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = Domainr;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
+				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
 			};
 			name = Release;
 		};
@@ -571,6 +577,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -581,6 +589,8 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = Domainr;
+				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
 			};
 			name = AdHoc;
 		};
@@ -604,7 +614,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -615,7 +626,8 @@
 					"\"$(SRCROOT)/FlurryAnalytics\"",
 				);
 				PRODUCT_NAME = Domainr;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "891379EE-B730-45C1-943B-577DD4DC63E1";
+				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
 			};
 			name = Distribution;
 		};
