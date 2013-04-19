@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07CB08B91720DE6500AB3FE5 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07CB08B81720DE6500AB3FE5 /* libFlurryAnalytics.a */; };
 		1D3623260D0F684500981E51 /* DomainrAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* DomainrAppDelegate.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		48530D5E154B37490066915C /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48530D5D154B37490066915C /* libFlurryAnalytics.a */; };
 		B3388F53152BD564009649FB /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3388F52152BD564009649FB /* icon@2x.png */; };
 		B343752E16D18FF200F19105 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752916D18FF200F19105 /* Default@2x.png */; };
 		B343752F16D18FF200F19105 /* iana_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752A16D18FF200F19105 /* iana_icon@2x.png */; };
@@ -73,14 +73,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07CB08B71720DE6500AB3FE5 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		07CB08B81720DE6500AB3FE5 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* DomainrAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DomainrAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* DomainrAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DomainrAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Domainr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Domainr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		48530D5C154B37490066915C /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
-		48530D5D154B37490066915C /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		B3388F52152BD564009649FB /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icon@2x.png"; sourceTree = "<group>"; };
 		B343752916D18FF200F19105 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
@@ -180,13 +180,22 @@
 				BA8F250010905E1D000CBAF0 /* MessageUI.framework in Frameworks */,
 				BA0FCD361095A87F00593B42 /* CoreGraphics.framework in Frameworks */,
 				BA6173F31122B49600137B2D /* QuartzCore.framework in Frameworks */,
-				48530D5E154B37490066915C /* libFlurryAnalytics.a in Frameworks */,
+				07CB08B91720DE6500AB3FE5 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07CB08B61720DE6500AB3FE5 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				07CB08B71720DE6500AB3FE5 /* FlurryAnalytics.h */,
+				07CB08B81720DE6500AB3FE5 /* libFlurryAnalytics.a */,
+			);
+			path = FlurryAnalytics;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Main Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,7 +222,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				48530D5B154B37490066915C /* FlurryAnalytics */,
 				BA9D0D370FCA4FC000E2B262 /* Frameworks */,
 				BA754CD1107987370024A629 /* Additions */,
 				080E96DDFE201D6D7F000001 /* Main Controllers */,
@@ -225,6 +233,7 @@
 				BA6171E8112270C700137B2D /* Domainr_Prefix.pch */,
 				BA6171CA11226DD500137B2D /* main.m */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				07CB08B61720DE6500AB3FE5 /* FlurryAnalytics */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -273,15 +282,6 @@
 				BA6173F21122B49600137B2D /* QuartzCore.framework */,
 			);
 			name = "Linked Frameworks";
-			sourceTree = "<group>";
-		};
-		48530D5B154B37490066915C /* FlurryAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				48530D5C154B37490066915C /* FlurryAnalytics.h */,
-				48530D5D154B37490066915C /* libFlurryAnalytics.a */,
-			);
-			path = FlurryAnalytics;
 			sourceTree = "<group>";
 		};
 		BA0FCCBC10959E6700593B42 /* History */ = {
@@ -528,6 +528,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
 				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
@@ -550,6 +551,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
 				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
@@ -587,6 +589,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
 				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
@@ -624,6 +627,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/FlurryAnalytics\"",
+					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
 				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
