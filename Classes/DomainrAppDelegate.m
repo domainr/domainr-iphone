@@ -1,6 +1,6 @@
 #import "DomainrAppDelegate.h"
 #import "MainViewController.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 @implementation DomainrAppDelegate
 
@@ -8,11 +8,11 @@
 	@synthesize navigationController;
 
 void uncaughtExceptionHandler(NSException*exception) {
-    [FlurryAnalytics logError:@"Uncaught" message:@"Crash" exception:exception];
+    [Flurry logError:@"Uncaught" message:@"Crash" exception:exception];
 }
 
 	- (void)applicationDidFinishLaunching:(UIApplication *)application; {
-        [FlurryAnalytics startSession:@"XXXXXXXXXXXXXXXXXXXX"];
+        [Flurry startSession:@"XXXXXXXXXXXXXXXXXXXX"];
         NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 		MainViewController *mainViewController = [[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
 		UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainViewController];

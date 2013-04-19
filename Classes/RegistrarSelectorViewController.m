@@ -8,7 +8,7 @@
 
 #import "RegistrarSelectorViewController.h"
 #import "WebViewController.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 
 @implementation RegistrarSelectorViewController
 
@@ -65,7 +65,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [FlurryAnalytics logEvent:@"Register tap (alternate)"];
+    [Flurry logEvent:@"Register tap (alternate)"];
     NSDictionary *registrar = [result.registrars objectAtIndexA:indexPath.row];
 	//	WebViewController *webViewController = [[[WebViewController alloc] initWithResult:result] autorelease];
     WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:[registrar objectForKey:@"register_url"] result:result] autorelease];

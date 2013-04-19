@@ -3,7 +3,7 @@
 #import	"Reachability.h"
 #import "ResultViewController.h"
 #import "DMAboutController.h"
-#import "FlurryAnalytics.h"
+#import "Flurry.h"
 #import "UIDevice+Screen.h"
 
 @implementation MainViewController
@@ -173,7 +173,7 @@
 	}
 
 	- (void)search; {
-        [FlurryAnalytics logEvent:@"Search"];
+        [Flurry logEvent:@"Search"];
 		NSString *searchText = [mySearchBar text];
 		
 		[self toggleActivityIndicator:YES];
