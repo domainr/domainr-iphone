@@ -351,8 +351,12 @@
 				[_alert show];
 				return;
 			}
-			
-			mySearchBar.text = [historyArray objectAtIndexA:indexPath.row];
+			NSString *chosenHistory = [historyArray objectAtIndex:indexPath.row];
+			mySearchBar.text = chosenHistory;
+			[historyTableView setHidden:YES];
+			infoButton.hidden = YES;
+			[myTableView setHidden:NO];
+            [self search];
 		}
 	}
 
