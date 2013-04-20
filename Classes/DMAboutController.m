@@ -66,7 +66,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 {
     // Return the number of sections.
-	return 3;
+	return 4;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
@@ -94,7 +94,7 @@
 		return 3;
 	}
 	if (section == 1) {
-		return 4;
+		return 5;
 	}
 	return 0;
 }
@@ -136,6 +136,10 @@
 			cell.textLabel.text = @"@ceedub";			
 			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		}
+		if (indexPath.row == 4) {
+			cell.textLabel.text = @"@connor";			
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		}
 	}
 	
     return cell;
@@ -174,6 +178,9 @@
 		}
 		if (indexPath.row == 3) {
 			username = @"ceedub";
+		}
+		if (indexPath.row == 4) {
+			username = @"connor";
 		}
 		
 		WebViewController *webView = [[[WebViewController alloc] initWithAddress:[NSString stringWithFormat:@"http://twitter.com/%@", username] result:nil] autorelease];			
