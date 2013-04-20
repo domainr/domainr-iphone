@@ -192,7 +192,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath;
 {
 	if (indexPath.section == 0 && indexPath.row == 0) {
-		WebViewController *webView = [[[WebViewController alloc] initWithAddress:@"https://twitter.com/search/realtime?q=domainr+OR+domai.nr&src=typd" result:nil] autorelease];			
+		WebViewController *webView = [[[WebViewController alloc] initWithAddress:@"https://mobile.twitter.com/search/?q=domainr+OR+domai.nr" result:nil] autorelease];			
 		[self.navigationController pushViewController:webView animated:YES];
 	}
 }
