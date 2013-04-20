@@ -328,6 +328,7 @@
 			[[cell textLabel] setLineBreakMode:UILineBreakModeWordWrap];
 			[[cell textLabel] setNumberOfLines:0];
 			cell.imageView.image = [SDImage imageNamed:@"magnifying_glass_15x15.png"];
+			cell.imageView.highlightedImage = [SDImage imageNamed:@"magnifying_glass_15x15_active.png"];
 			return cell;
 		}
 		return nil;
