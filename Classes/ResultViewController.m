@@ -244,12 +244,14 @@
 				[[cell textLabel] setText:SDLocalizedString(@"Wikipedia")];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 cell.imageView.image = [SDImage imageNamed:@"wiki_icon.png"];
+                cell.imageView.highlightedImage = [SDImage imageNamed:@"wiki_icon_active.png"];
 			}
             else if(indexPath.row == 1) {
 				[[cell textLabel] setText:SDLocalizedString(@"IANA")];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 cell.imageView.image = [SDImage imageNamed:@"iana_icon.png"];
-			}            
+                cell.imageView.highlightedImage = [SDImage imageNamed:@"iana_icon_active.png"];
+			}
 		}
 		else if(indexPath.section == kToolSection) {
             if([result isResolvable] && indexPath.row == 0) {
@@ -258,6 +260,7 @@
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 				cell.imageView.image = [SDImage imageNamed:@"web.png"];
+				cell.imageView.highlightedImage = [SDImage imageNamed:@"web_active.png"];
 			}
 			else if((![result isResolvable] && indexPath.row == 0) || indexPath.row == 1) {
 				[[cell textLabel] setText:SDLocalizedString(@"WHOIS")];
@@ -265,6 +268,7 @@
 				[cell setAccessoryView:nil];
 				[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 				cell.imageView.image = [SDImage imageNamed:@"magnifying_glass.png"];
+                cell.imageView.highlightedImage = [SDImage imageNamed:@"magnifying_glass_active.png"];
 			}
 		}
 		return cell;
