@@ -110,11 +110,15 @@
 	- (void)setKeyboardState:(BOOL)show; {
 		keyboardHidden = !show;
 		CGRect newFrame = [myTableView frame];
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        NSInteger height = screenHeight - 20;
 		if(show) {
-			newFrame.size.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 460 - 44 - KEYBOARD_HEIGHT_PORTRAIT : 300 - 44 - KEYBOARD_HEIGHT_LANDSCAPE;
+			newFrame.size.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? height - 44 - KEYBOARD_HEIGHT_PORTRAIT : 300 - 44 - KEYBOARD_HEIGHT_LANDSCAPE;
 		}
 		else {
-			newFrame.size.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 460 - 44 : 300 - 44;
+			newFrame.size.height = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? height - 44 : 300 - 44;
 			[mySearchBar resignFirstResponder];
 		}
 		[myTableView setFrame:newFrame];
@@ -354,7 +358,7 @@
 
 	- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath; {
 		if (tableView == historyTableView) {
-			//return 2;
+//			return 2;
 		}
 		return 0;
 	}
