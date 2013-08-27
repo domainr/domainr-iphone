@@ -28,6 +28,8 @@
 		B343753116D18FF200F19105 /* magnifying_glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752C16D18FF200F19105 /* magnifying_glass@2x.png */; };
 		B343753216D18FF200F19105 /* wiki_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343752D16D18FF200F19105 /* wiki_icon@2x.png */; };
 		B343753416D1902600F19105 /* web@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B343753316D1902600F19105 /* web@2x.png */; };
+		B39B39F017CFE08F0028CEBA /* available@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39B39EE17CFE08F0028CEBA /* available@2x.png */; };
+		B39B39F117CFE08F0028CEBA /* maybe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B39B39EF17CFE08F0028CEBA /* maybe@2x.png */; };
 		B3E7CD9016D1799200987200 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B3E7CD8E16D1799200987200 /* Default-568h@2x.png */; };
 		BA0FCD361095A87F00593B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		BA577530108EDAAA00C6828C /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA57752E108EDAAA00C6828C /* ResultViewController.m */; };
@@ -110,6 +112,8 @@
 		B343752C16D18FF200F19105 /* magnifying_glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "magnifying_glass@2x.png"; path = "Resources/magnifying_glass@2x.png"; sourceTree = "<group>"; };
 		B343752D16D18FF200F19105 /* wiki_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "wiki_icon@2x.png"; path = "Resources/wiki_icon@2x.png"; sourceTree = "<group>"; };
 		B343753316D1902600F19105 /* web@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "web@2x.png"; path = "Resources/web@2x.png"; sourceTree = "<group>"; };
+		B39B39EE17CFE08F0028CEBA /* available@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "available@2x.png"; path = "Resources/available@2x.png"; sourceTree = "<group>"; };
+		B39B39EF17CFE08F0028CEBA /* maybe@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "maybe@2x.png"; path = "Resources/maybe@2x.png"; sourceTree = "<group>"; };
 		B3E7CD8E16D1799200987200 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Resources/Default-568h@2x.png"; sourceTree = "<group>"; };
 		BA57752D108EDAAA00C6828C /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResultViewController.h; path = Classes/ResultViewController.h; sourceTree = "<group>"; };
 		BA57752E108EDAAA00C6828C /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResultViewController.m; path = Classes/ResultViewController.m; sourceTree = "<group>"; };
@@ -262,6 +266,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B39B39EE17CFE08F0028CEBA /* available@2x.png */,
+				B39B39EF17CFE08F0028CEBA /* maybe@2x.png */,
 				B33E148B1723424B004EF8C7 /* magnifying_glass_15x15_active.png */,
 				B33E148C1723424B004EF8C7 /* magnifying_glass_15x15_active@2x.png */,
 				B33E147B172341F8004EF8C7 /* iana_icon_active.png */,
@@ -511,6 +517,8 @@
 				B33E148A172341F8004EF8C7 /* wiki_icon_active@2x.png in Resources */,
 				B33E148D1723424B004EF8C7 /* magnifying_glass_15x15_active.png in Resources */,
 				B33E148E1723424B004EF8C7 /* magnifying_glass_15x15_active@2x.png in Resources */,
+				B39B39F017CFE08F0028CEBA /* available@2x.png in Resources */,
+				B39B39F117CFE08F0028CEBA /* maybe@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,8 +566,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -574,8 +582,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
-				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -585,8 +593,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -599,8 +607,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
-				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -625,8 +633,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -639,8 +647,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
-				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AdHoc;
@@ -665,8 +673,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: nb.io, LLC (95TFR6S6T9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Connor Montgomery (647GBDK4G3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Domainr_Prefix.pch;
@@ -679,8 +687,8 @@
 					"\"$(SRCROOT)/Flurry\"",
 				);
 				PRODUCT_NAME = Domainr;
-				PROVISIONING_PROFILE = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25F3F068-D256-4810-9CA2-2EAA05224B6C";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Distribution;
