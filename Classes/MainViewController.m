@@ -5,7 +5,6 @@
 #import "DMAboutController.h"
 #import "Flurry.h"
 #import "UIDevice+Screen.h"
-#import "SVProgressHUD.h"
 
 @implementation MainViewController
 
@@ -184,7 +183,7 @@
 		[self toggleActivityIndicator:YES];
 		loading = YES;
 		
-		NSString *urlSearchString = [NSString stringWithFormat: @"http://domai.nr/api/json/search?q=%@", searchText];
+		NSString *urlSearchString = [NSString stringWithFormat: @"https://domai.nr/api/json/search?q=%@", searchText];
 		
 		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlSearchString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
