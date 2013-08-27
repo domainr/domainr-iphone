@@ -5,6 +5,7 @@
 #import "DMAboutController.h"
 #import "Flurry.h"
 #import "UIDevice+Screen.h"
+#import "SVProgressHUD.h"
 
 @implementation MainViewController
 
@@ -339,7 +340,7 @@
 			Result *chosenResult = [results objectAtIndex:indexPath.row];
 			[[Storage instance] storeSearch: chosenResult.domainName];
 			ResultViewController *resultViewController = [[[ResultViewController alloc] initWithResult:chosenResult] autorelease];
-			[self.navigationController pushViewController:resultViewController animated:YES];
+            [self.navigationController pushViewController:resultViewController animated:YES];
 		}
 		else if(tableView == historyTableView) {
 			if (indexPath.section == 1) {
@@ -353,11 +354,15 @@
 				return;
 			}
 			NSString *chosenHistory = [historyArray objectAtIndex:indexPath.row];
-            mySearchBar.text = chosenHistory;
-            [historyTableView setHidden:YES];
-            infoButton.hidden = YES;
-            [myTableView setHidden:NO];
-            [self search];
+            if ([internetReach currentReachabilityStatus] == NotReachable) {
+                UIAlertViewQuick(@"Network Error", @"Sorry, the network is not available", @"OK");
+            } else {
+                mySearchBar.text = chosenHistory;
+                [historyTableView setHidden:YES];
+                infoButton.hidden = YES;
+                [myTableView setHidden:NO];
+                [self search];
+            }
 		}
 	}
 
