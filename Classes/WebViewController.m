@@ -151,7 +151,7 @@
 	[picker setToRecipients:nil];
 	[picker setSubject:SDLocalizedStringWithFormat(@"Domainr: %@",_result.domainName)];
 	
-	NSString *emailBody = [NSString stringWithFormat:@"Registration URL: <strong>%@</strong><br/><br/>Found on Domainr:<br/><strong>http://domai.nr/%@</strong>", [webView.request.URL absoluteString] ? loadAddress : [webView.request.URL absoluteString], _result.domainName];
+	NSString *emailBody = [NSString stringWithFormat:@"Registration URL: <strong>%@</strong><br/><br/>Found on Domainr:<br/><strong>https://domainr.com/%@</strong>", [webView.request.URL absoluteString] ? loadAddress : [webView.request.URL absoluteString], _result.domainName];
 	[picker setMessageBody:emailBody isHTML:YES];		
 	[self presentModalViewController:picker animated:YES];
 	[picker release];
