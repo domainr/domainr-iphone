@@ -55,7 +55,7 @@
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
         
-        NSString *urlInfoString = [NSString stringWithFormat: @"https://domai.nr/api/json/info?q=%@", result.domainName];
+        NSString *urlInfoString = [NSString stringWithFormat: @"https://domainr.com/api/json/info?q=%@", result.domainName];
 		
 		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlInfoString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
@@ -285,7 +285,7 @@
                 }
                 
 				if(result.imageType == kTaken) {
-					NSString *buyURL = [NSString stringWithFormat:@"https://domai.nr/%@/buy",result.domainName];
+					NSString *buyURL = [NSString stringWithFormat:@"https://domainr.com/%@/buy",result.domainName];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:buyURL  result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
@@ -303,12 +303,12 @@
 				}
 				else if([result isRegistrable]) {
 					[Flurry logEvent:@"Register tap"];
-                    NSString *apiRegisterURL = [[NSString stringWithFormat:@"https://domai.nr/api/register?domain=%@",result.domainName]  stringByAppendingString:@"&client_id=iphone"];
+                    NSString *apiRegisterURL = [[NSString stringWithFormat:@"https://domainr.com/api/register?domain=%@",result.domainName]  stringByAppendingString:@"&client_id=iphone"];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:apiRegisterURL result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}
 				else {
-					NSString *tldURL = [NSString stringWithFormat:@"https://domai.nr/about/tlds",result.domainName];
+					NSString *tldURL = [NSString stringWithFormat:@"https://domainr.com/about/tlds",result.domainName];
 					WebViewController *webViewController = [[[WebViewController alloc] initWithAddress:tldURL  result:result] autorelease];
 					[self.navigationController pushViewController:webViewController animated:YES];
 				}				
@@ -402,7 +402,7 @@
 		[picker setToRecipients:nil];
 		[picker setSubject:SDLocalizedStringWithFormat(@"Domainr: %@",result.domainName)];
 		
-		NSString *emailBody = [NSString stringWithFormat:@"Found on Domainr:<br/><br/><strong>http://domai.nr/%@</strong>",result.domainName];
+		NSString *emailBody = [NSString stringWithFormat:@"Found on Domainr:<br/><br/><strong>https://domainr.com/%@</strong>",result.domainName];
 		[picker setMessageBody:emailBody isHTML:YES];		
 		[self presentModalViewController:picker animated:YES];
 		[picker release];
