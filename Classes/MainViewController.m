@@ -183,7 +183,7 @@
 		[self toggleActivityIndicator:YES];
 		loading = YES;
 		
-		NSString *urlSearchString = [NSString stringWithFormat: @"https://domainr.com/api/json/search?q=%@", searchText];
+		NSString *urlSearchString = [NSString stringWithFormat: @"https://api.domainr.com/v1/api/json/search?q=%@", searchText];
 		
 		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlSearchString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
