@@ -55,7 +55,7 @@
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
         
-        NSString *urlInfoString = [NSString stringWithFormat: @"https://domainr.com/api/json/info?q=%@", result.domainName];
+        NSString *urlInfoString = [NSString stringWithFormat: @"https://api.domainr.com/v1/api/json/info?q=%@", result.domainName];
 		
 		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlInfoString escapedString] stringByAppendingString:@"&client_id=iphone"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
