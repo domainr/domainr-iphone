@@ -11,7 +11,7 @@
 	- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation; {
 		return YES;
 	}
-
+ip
 	- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation; {
 		[self.tableView reloadData];
 	}
@@ -57,7 +57,7 @@
         
         NSString *urlInfoString = [NSString stringWithFormat: @"https://api.domainr.com/v1/api/json/info?q=%@", result.domainName];
 		
-		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlInfoString escapedString] stringByAppendingString:@"&client_id=iphone"]]
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL: [NSURL URLWithString: [[urlInfoString escapedString] stringByAppendingString:@"&client_id={your-mashape-key}"]]
 																  cachePolicy: NSURLRequestUseProtocolCachePolicy
 															  timeoutInterval: 60.0];
 		[theRequest setHTTPMethod:@"GET"];
